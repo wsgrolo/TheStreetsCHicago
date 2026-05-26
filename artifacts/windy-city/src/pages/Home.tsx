@@ -14,7 +14,7 @@ import youtubeAvatar from "@/assets/social/youtube.jpg";
 import twitterAvatar from "@/assets/social/twitter.jpg";
 
 const socialLinks = [
-  { name: "Discord", url: "https://discord.com/invite/windycityrp", icon: SiDiscord, avatar: discordAvatar, color: "hover:text-[#5865F2]", accent: "#5865F2", description: "Join our active community" },
+  { name: "Main City", url: "https://discord.com/invite/windycityrp", icon: SiDiscord, avatar: discordAvatar, color: "hover:text-[#5865F2]", accent: "#5865F2", description: "Join our active community" },
   { name: "Tebex Store", url: "https://windycityrp.tebex.io/", icon: ExternalLink, avatar: tebexAvatar, color: "hover:text-primary", accent: "hsl(213 68% 52%)", description: "Support the server" },
   { name: "Forums", url: "https://windycity.community.forum/threads/server-guidelines.1/", icon: Users, avatar: forumsAvatar, color: "hover:text-primary", accent: "hsl(213 68% 52%)", description: "Read the rules" },
   { name: "TikTok", url: "https://www.tiktok.com/@windy.city23", icon: SiTiktok, avatar: tiktokAvatar, color: "hover:text-[#00f2fe]", accent: "#69C9D0", description: "Watch our clips" },
