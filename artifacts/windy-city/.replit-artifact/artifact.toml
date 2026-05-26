@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Windy City Roleplay"
+version = "1.0.0"
+id = "artifacts/windy-city"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19550
+
+[services.development]
+run = "pnpm --filter @workspace/windy-city run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/windy-city", "run", "build" ]
+publicDir = "artifacts/windy-city/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19550"
+BASE_PATH = "/"
