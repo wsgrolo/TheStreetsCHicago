@@ -6,14 +6,20 @@ import logo from "@/assets/windycity-logo.png";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import heroVideo from "@/assets/hero-bg.mp4";
+import discordAvatar from "@/assets/social/discord.png";
+import tebexAvatar from "@/assets/social/tebex.png";
+import forumsAvatar from "@/assets/social/forums.png";
+import tiktokAvatar from "@/assets/social/tiktok.jpg";
+import youtubeAvatar from "@/assets/social/youtube.jpg";
+import twitterAvatar from "@/assets/social/twitter.jpg";
 
 const socialLinks = [
-  { name: "Discord", url: "https://discord.com/invite/windycityrp", icon: SiDiscord, color: "hover:text-[#5865F2]", description: "Join our active community" },
-  { name: "Tebex Store", url: "https://windycityrp.tebex.io/", icon: ExternalLink, color: "hover:text-primary", description: "Support the server" },
-  { name: "Forums", url: "https://windycity.community.forum/threads/server-guidelines.1/", icon: Users, color: "hover:text-primary", description: "Read the rules" },
-  { name: "TikTok", url: "https://www.tiktok.com/@windy.city23", icon: SiTiktok, color: "hover:text-[#00f2fe]", description: "Watch our clips" },
-  { name: "YouTube", url: "https://www.youtube.com/@WindyCityChicagoRP", icon: SiYoutube, color: "hover:text-[#FF0000]", description: "Server highlights" },
-  { name: "Twitter/X", url: "https://x.com/WindyCityRP", icon: SiX, color: "hover:text-white", description: "Latest updates" }
+  { name: "Discord", url: "https://discord.com/invite/windycityrp", icon: SiDiscord, avatar: discordAvatar, color: "hover:text-[#5865F2]", accent: "#5865F2", description: "Join our active community" },
+  { name: "Tebex Store", url: "https://windycityrp.tebex.io/", icon: ExternalLink, avatar: tebexAvatar, color: "hover:text-primary", accent: "hsl(213 68% 52%)", description: "Support the server" },
+  { name: "Forums", url: "https://windycity.community.forum/threads/server-guidelines.1/", icon: Users, avatar: forumsAvatar, color: "hover:text-primary", accent: "hsl(213 68% 52%)", description: "Read the rules" },
+  { name: "TikTok", url: "https://www.tiktok.com/@windy.city23", icon: SiTiktok, avatar: tiktokAvatar, color: "hover:text-[#00f2fe]", accent: "#69C9D0", description: "Watch our clips" },
+  { name: "YouTube", url: "https://www.youtube.com/@WindyCityChicagoRP", icon: SiYoutube, avatar: youtubeAvatar, color: "hover:text-[#FF0000]", accent: "#FF0000", description: "Server highlights" },
+  { name: "Twitter/X", url: "https://x.com/WindyCityRP", icon: SiX, avatar: twitterAvatar, color: "hover:text-white", accent: "#e7e9ea", description: "Latest updates" }
 ];
 
 const features = [
@@ -211,8 +217,17 @@ export default function Home() {
                 <Card className="bg-white/[0.02] border-white/5 hover:bg-white/[0.04] transition-all duration-300 overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-transparent transition-colors duration-500" />
                   <CardContent className="p-6 flex items-center gap-5 relative z-10">
-                    <div className="h-12 w-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                      <link.icon className={`h-6 w-6 text-muted-foreground transition-colors ${link.color}`} />
+                    <div className="relative flex-shrink-0">
+                      <img
+                        src={link.avatar}
+                        alt={link.name}
+                        className="h-12 w-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-white/25 transition-all"
+                      />
+                      <div
+                        className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full flex items-center justify-center bg-card border border-white/10"
+                      >
+                        <link.icon className="h-3 w-3" style={{ color: link.accent }} />
+                      </div>
                     </div>
                     <div>
                       <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{link.name}</h3>
