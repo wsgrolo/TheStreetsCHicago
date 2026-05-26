@@ -235,8 +235,18 @@ export default function Home() {
             <span className="font-bold tracking-tight">WINDY CITY RP</span>
           </div>
           
-          <div className="text-sm text-muted-foreground text-center md:text-left">
-            &copy; {new Date().getFullYear()} Windy City Roleplay. All rights reserved.
+          <div className="flex flex-col md:flex-row items-center gap-3 text-sm text-muted-foreground text-center md:text-left">
+            <span>&copy; {new Date().getFullYear()} Windy City Roleplay. All rights reserved.</span>
+            <a
+              href="https://windycity.community.forum/threads/server-guidelines.1/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="link-guidelines"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/40 hover:text-white transition-all text-xs font-medium"
+            >
+              <Users className="h-3 w-3" />
+              Server Guidelines
+            </a>
           </div>
 
           <div className="flex items-center gap-4">
