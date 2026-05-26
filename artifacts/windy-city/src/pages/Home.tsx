@@ -53,7 +53,7 @@ export default function Home() {
             <a href="#community" className="text-muted-foreground hover:text-white transition-colors">Community</a>
           </div>
 
-          <Button asChild className="rounded-full px-6 font-bold shadow-[0_0_15px_rgba(0,242,254,0.3)] hover:shadow-[0_0_25px_rgba(0,242,254,0.6)] transition-all border-none bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button asChild className="rounded-full px-6 font-bold shadow-[0_0_15px_rgba(74,130,214,0.35)] hover:shadow-[0_0_25px_rgba(74,130,214,0.65)] transition-all border-none bg-primary text-primary-foreground hover:bg-primary/90">
             <a href="https://discord.com/invite/windycityrp" target="_blank" rel="noopener noreferrer">
               Join Now
             </a>
@@ -95,7 +95,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60"
           >
-            Welcome to the <br /> <span className="text-primary drop-shadow-[0_0_20px_rgba(0,242,254,0.5)] bg-none bg-primary text-transparent bg-clip-text">Windy City</span>
+            Welcome to the <br /> <span className="text-primary drop-shadow-[0_0_20px_rgba(74,130,214,0.55)] bg-none bg-primary text-transparent bg-clip-text">Windy City</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}

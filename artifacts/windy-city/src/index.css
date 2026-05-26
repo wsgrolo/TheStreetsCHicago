@@ -52,56 +52,58 @@
 }
 
 :root, .dark {
-  --background: 228 25% 5%;
-  --foreground: 210 40% 98%;
+  /* Deep navy — matches the logo's outer ring and badge background */
+  --background: 222 47% 5%;
+  --foreground: 210 30% 96%;
 
-  --border: 228 20% 15%;
-  --input: 228 20% 15%;
-  --ring: 190 90% 50%;
+  --border: 220 35% 13%;
+  --input: 220 35% 13%;
+  --ring: 213 68% 52%;
 
-  --card: 228 25% 7%;
-  --card-foreground: 210 40% 98%;
-  --card-border: 228 20% 15%;
+  --card: 222 45% 7%;
+  --card-foreground: 210 30% 96%;
+  --card-border: 220 35% 13%;
 
-  --popover: 228 25% 7%;
-  --popover-foreground: 210 40% 98%;
-  --popover-border: 228 20% 15%;
+  --popover: 222 45% 7%;
+  --popover-foreground: 210 30% 96%;
+  --popover-border: 220 35% 13%;
 
-  --primary: 190 90% 50%;
-  --primary-foreground: 228 25% 5%;
+  /* Steel blue — matches the skyline highlights and badge tones in the logo */
+  --primary: 213 68% 52%;
+  --primary-foreground: 222 47% 5%;
 
-  --secondary: 228 20% 15%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 220 35% 13%;
+  --secondary-foreground: 210 30% 96%;
 
-  --muted: 228 20% 15%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 220 35% 13%;
+  --muted-foreground: 215 18% 58%;
 
-  --accent: 190 90% 50%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 213 68% 52%;
+  --accent-foreground: 210 30% 96%;
 
   --destructive: 0 84% 60%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive-foreground: 210 30% 96%;
 
   --app-font-sans: 'Outfit', sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
-  
+
   --radius: 0.5rem;
-  
-  --chart-1: 190 90% 50%;
-  --chart-2: 210 40% 98%;
-  --chart-3: 228 20% 15%;
-  --chart-4: 228 25% 7%;
+
+  --chart-1: 213 68% 52%;
+  --chart-2: 210 30% 96%;
+  --chart-3: 220 35% 13%;
+  --chart-4: 222 45% 7%;
   --chart-5: 0 84% 60%;
 
-  --sidebar: 228 25% 5%;
-  --sidebar-foreground: 210 40% 98%;
-  --sidebar-border: 228 20% 15%;
-  --sidebar-primary: 190 90% 50%;
-  --sidebar-primary-foreground: 228 25% 5%;
-  --sidebar-accent: 228 20% 15%;
-  --sidebar-accent-foreground: 210 40% 98%;
-  --sidebar-ring: 190 90% 50%;
+  --sidebar: 222 47% 5%;
+  --sidebar-foreground: 210 30% 96%;
+  --sidebar-border: 220 35% 13%;
+  --sidebar-primary: 213 68% 52%;
+  --sidebar-primary-foreground: 222 47% 5%;
+  --sidebar-accent: 220 35% 13%;
+  --sidebar-accent-foreground: 210 30% 96%;
+  --sidebar-ring: 213 68% 52%;
 }
 
 @layer base {
