@@ -70,6 +70,8 @@ export default function Home() {
             <a href="#about" className="text-muted-foreground hover:text-white transition-colors">About</a>
             <a href="#features" className="text-muted-foreground hover:text-white transition-colors">Features</a>
             <a href="#community" className="text-muted-foreground hover:text-white transition-colors">Community</a>
+            <a href="#factions" className="text-muted-foreground hover:text-white transition-colors">Factions</a>
+            <a href="/partners" className="text-muted-foreground hover:text-white transition-colors">Partners</a>
           </div>
 
           <Button asChild className="rounded-full px-6 font-bold shadow-[0_0_15px_rgba(74,130,214,0.35)] hover:shadow-[0_0_25px_rgba(74,130,214,0.65)] transition-all border-none bg-primary text-primary-foreground hover:bg-primary/90">
