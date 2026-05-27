@@ -38,17 +38,19 @@ const factionLinks = [
 
 const owners = [
   {
-    name: "Owner Name",
+    name: "ANnoying",
     role: "Founder & Owner",
-    initials: "OW",
+    initials: "AN",
     photo: owner1Avatar,
     bio: "The visionary behind Windy City Roleplay. Built this community from the ground up.",
     color: "from-primary/30 to-primary/5",
     socials: {
       discord: "",
-      instagram: "",
-      twitch: "",
-      kick: "",
+      instagram: "https://www.instagram.com/mariohtxx",
+      twitch: "https://www.twitch.tv/annoying",
+      kick: "https://kick.com/annoying",
+      tiktok: "https://www.tiktok.com/@mariohtxx",
+      twitter: "https://x.com/mariohtxx",
     },
   },
   {
@@ -63,6 +65,8 @@ const owners = [
       instagram: "",
       twitch: "",
       kick: "",
+      tiktok: "",
+      twitter: "",
     },
   },
 ];
@@ -497,36 +501,44 @@ export default function Home() {
                     <p className="text-muted-foreground text-sm leading-relaxed mb-6">{owner.bio}</p>
 
                     {/* Socials */}
-                    <div className="flex items-center gap-3 flex-wrap justify-center">
+                    <div className="flex items-center gap-2 flex-wrap justify-center">
                       {owner.socials.discord && (
                         <a href={owner.socials.discord} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-4 py-2 hover:bg-[#5865F2]/10 hover:border-[#5865F2]/40 hover:text-white transition-all">
-                          <SiDiscord className="h-3.5 w-3.5 text-[#5865F2]" />
-                          Discord
+                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-[#5865F2]/10 hover:border-[#5865F2]/40 hover:text-white transition-all">
+                          <SiDiscord className="h-3 w-3 text-[#5865F2]" />Discord
                         </a>
                       )}
                       {owner.socials.instagram && (
                         <a href={owner.socials.instagram} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-4 py-2 hover:bg-pink-500/10 hover:border-pink-500/40 hover:text-white transition-all">
-                          <SiInstagram className="h-3.5 w-3.5 text-pink-400" />
-                          Instagram
+                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-pink-500/10 hover:border-pink-500/40 hover:text-white transition-all">
+                          <SiInstagram className="h-3 w-3 text-pink-400" />Instagram
                         </a>
                       )}
                       {owner.socials.twitch && (
                         <a href={owner.socials.twitch} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-4 py-2 hover:bg-purple-500/10 hover:border-purple-500/40 hover:text-white transition-all">
-                          <SiTwitch className="h-3.5 w-3.5 text-purple-400" />
-                          Twitch
+                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-purple-500/10 hover:border-purple-500/40 hover:text-white transition-all">
+                          <SiTwitch className="h-3 w-3 text-purple-400" />Twitch
                         </a>
                       )}
                       {owner.socials.kick && (
                         <a href={owner.socials.kick} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-4 py-2 hover:bg-green-500/10 hover:border-green-500/40 hover:text-white transition-all">
-                          <SiKick className="h-3.5 w-3.5 text-green-400" />
-                          Kick
+                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-green-500/10 hover:border-green-500/40 hover:text-white transition-all">
+                          <SiKick className="h-3 w-3 text-green-400" />Kick
                         </a>
                       )}
-                      {!owner.socials.discord && !owner.socials.instagram && !owner.socials.twitch && !owner.socials.kick && (
+                      {owner.socials.tiktok && (
+                        <a href={owner.socials.tiktok} target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-[#69C9D0]/10 hover:border-[#69C9D0]/40 hover:text-white transition-all">
+                          <SiTiktok className="h-3 w-3 text-[#69C9D0]" />TikTok
+                        </a>
+                      )}
+                      {owner.socials.twitter && (
+                        <a href={owner.socials.twitter} target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-white/10 hover:border-white/30 hover:text-white transition-all">
+                          <SiX className="h-3 w-3 text-white/60" />X
+                        </a>
+                      )}
+                      {!owner.socials.discord && !owner.socials.instagram && !owner.socials.twitch && !owner.socials.kick && !owner.socials.tiktok && !owner.socials.twitter && (
                         <span className="text-xs text-muted-foreground/40 italic">No socials added yet</span>
                       )}
                     </div>
