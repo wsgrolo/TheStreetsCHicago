@@ -460,6 +460,7 @@ export default function Home() {
             {owners.map((owner, idx) => (
               <motion.div
                 key={idx}
+                id={`owner-${idx}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -526,7 +527,30 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 bg-background py-12">
+      <footer className="border-t border-white/5 bg-background pt-10 pb-8">
+        {/* Owner avatars row */}
+        <div className="container mx-auto px-6 mb-8 pb-8 border-b border-white/5">
+          <p className="text-center text-xs uppercase tracking-widest text-muted-foreground/40 font-semibold mb-5">Leadership</p>
+          <div className="flex items-center justify-center gap-6 flex-wrap">
+            {owners.map((owner, idx) => (
+              <a
+                key={idx}
+                href={`#owner-${idx}`}
+                className="flex flex-col items-center gap-2 group"
+                title={owner.name}
+              >
+                <div className={`relative h-14 w-14 rounded-full bg-gradient-to-br ${owner.color} border-2 border-white/10 group-hover:border-primary/60 flex items-center justify-center text-sm font-black text-white shadow-[0_0_20px_rgba(74,130,214,0.1)] group-hover:shadow-[0_0_25px_rgba(74,130,214,0.35)] transition-all duration-300`}>
+                  {owner.initials}
+                  <div className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-primary flex items-center justify-center border-2 border-background opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Crown className="h-2.5 w-2.5 text-white" />
+                  </div>
+                </div>
+                <span className="text-xs text-muted-foreground/60 group-hover:text-white transition-colors font-medium max-w-[80px] text-center leading-tight">{owner.name}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3 opacity-50">
             <img src={logo} alt="Logo" className="h-8 w-auto grayscale" />
