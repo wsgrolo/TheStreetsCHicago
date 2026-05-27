@@ -527,56 +527,60 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 bg-background py-6">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
-          <div className="flex items-center gap-3 opacity-50">
+      <footer className="border-t border-white/5 bg-background py-5">
+        <div className="container mx-auto px-6 flex items-center justify-between gap-6">
+
+          {/* Left — logo */}
+          <div className="flex items-center gap-3 opacity-50 shrink-0">
             <img src={logo} alt="Logo" className="h-8 w-auto grayscale" />
-            <span className="font-bold tracking-tight">WINDY CITY RP</span>
+            <span className="font-bold tracking-tight hidden sm:block">WINDY CITY RP</span>
           </div>
 
-          {/* Copyright + owner avatars + guidelines */}
-          <div className="flex flex-col items-center gap-3">
-            <div className="flex items-center gap-3">
-              {owners.map((owner, idx) => (
-                <a
-                  key={idx}
-                  href={`#owner-${idx}`}
-                  title={`${owner.name} — ${owner.role}`}
-                  className="group relative"
-                >
-                  <div className={`h-8 w-8 rounded-full bg-gradient-to-br ${owner.color} border border-white/15 group-hover:border-primary/60 flex items-center justify-center text-xs font-black text-white group-hover:shadow-[0_0_12px_rgba(74,130,214,0.4)] transition-all duration-300`}>
-                    {owner.initials}
-                  </div>
-                </a>
-              ))}
-              <span className="text-muted-foreground/40 text-xs pl-1">&copy; {new Date().getFullYear()} Windy City Roleplay. All rights reserved.</span>
-            </div>
+          {/* Center — owner avatars · copyright · guidelines */}
+          <div className="flex items-center gap-3 flex-wrap justify-center">
+            {owners.map((owner, idx) => (
+              <a
+                key={idx}
+                href={`#owner-${idx}`}
+                title={`${owner.name} — ${owner.role}`}
+                className="group shrink-0"
+              >
+                <div className={`h-8 w-8 rounded-full bg-gradient-to-br ${owner.color} border border-white/15 group-hover:border-primary/60 flex items-center justify-center text-xs font-black text-white group-hover:shadow-[0_0_12px_rgba(74,130,214,0.4)] transition-all duration-300`}>
+                  {owner.initials}
+                </div>
+              </a>
+            ))}
+            <span className="text-white/20 hidden sm:block">·</span>
+            <span className="text-muted-foreground/40 text-xs whitespace-nowrap">&copy; {new Date().getFullYear()} Windy City Roleplay. All rights reserved.</span>
+            <span className="text-white/20 hidden sm:block">·</span>
             <a
               href="https://windycity.community.forum/threads/server-guidelines.1/"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="link-guidelines"
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/40 hover:text-white transition-all text-xs font-medium text-muted-foreground"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/40 hover:text-white transition-all text-xs font-medium text-muted-foreground whitespace-nowrap shrink-0"
             >
               <Users className="h-3 w-3" />
               Server Guidelines
             </a>
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* Right — social icons */}
+          <div className="flex items-center gap-1 shrink-0">
             {socialLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.url} 
-                target="_blank" 
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-white transition-colors p-2"
                 aria-label={link.name}
               >
-                <link.icon className={`h-5 w-5 ${link.color}`} />
+                <link.icon className={`h-4 w-4 ${link.color}`} />
               </a>
             ))}
           </div>
+
         </div>
       </footer>
     </div>
