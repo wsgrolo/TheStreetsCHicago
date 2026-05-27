@@ -226,7 +226,7 @@ export default function Home() {
             style={{ paddingBottom: "56.25%" }}
           >
             <iframe
-              src="https://www.youtube.com/embed/vZh03_1kCsM?autoplay=1&mute=1&rel=0&modestbranding=1&loop=1&playlist=vZh03_1kCsM"
+              src="https://www.youtube.com/embed/vZh03_1kCsM?rel=0&modestbranding=1"
               title="Windy City Roleplay — Official Server Trailer"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
