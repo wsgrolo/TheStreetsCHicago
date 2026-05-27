@@ -99,26 +99,27 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Navbar */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || menuOpen ? 'bg-background/95 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
-        <div className="container mx-auto px-6 flex items-center gap-0">
-          <a href="#" className="flex items-center gap-3 group pr-4 md:pr-8 md:border-r md:border-white/10">
+        <div className="container mx-auto px-6 flex items-center justify-between gap-6">
+          {/* Left — logo */}
+          <a href="#" className="flex items-center gap-3 group shrink-0">
             <img src={logo} alt="Windy City RP Logo" className="h-10 w-auto group-hover:scale-105 transition-transform" />
             <span className="font-bold text-xl tracking-tight hidden sm:block">WINDY CITY <span className="text-primary">RP</span></span>
           </a>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium flex-1 justify-center px-8 border-r border-white/10">
+          {/* Center — nav links */}
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
             {navLinks.map(l => (
               <a key={l.label} href={l.href} className="text-muted-foreground hover:text-white transition-colors">{l.label}</a>
             ))}
           </div>
 
-          <div className="pl-8 ml-auto flex items-center gap-3">
+          {/* Right — Join Now + hamburger */}
+          <div className="flex items-center gap-3 shrink-0">
             <Button asChild className="hidden md:inline-flex rounded-full px-6 font-bold shadow-[0_0_15px_rgba(74,130,214,0.35)] hover:shadow-[0_0_25px_rgba(74,130,214,0.65)] transition-all border-none bg-primary text-primary-foreground hover:bg-primary/90">
               <a href="https://discord.com/invite/windycityrp" target="_blank" rel="noopener noreferrer">
                 Join Now
               </a>
             </Button>
-            {/* Mobile hamburger */}
             <button
               className="md:hidden p-2 rounded-md text-muted-foreground hover:text-white hover:bg-white/5 transition-colors"
               onClick={() => setMenuOpen(o => !o)}

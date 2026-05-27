@@ -21,22 +21,23 @@ export default function Partners() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-white/5 py-3">
-        <div className="container mx-auto px-6 flex items-center gap-0">
-          <a href="/" className="flex items-center gap-3 group pr-4 md:pr-8 md:border-r md:border-white/10">
+        <div className="container mx-auto px-6 flex items-center justify-between gap-6">
+          <a href="/" className="flex items-center gap-3 group shrink-0">
             <img src={logo} alt="Windy City RP Logo" className="h-10 w-auto group-hover:scale-105 transition-transform" />
             <span className="font-bold text-xl tracking-tight hidden sm:block">
               WINDY CITY <span className="text-primary">RP</span>
             </span>
           </a>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium flex-1 justify-center px-8 border-r border-white/10">
+          {/* Center — nav links */}
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
             {navLinks.map(l => (
               <a key={l.label} href={l.href} className={`transition-colors ${l.href === "/partners" ? "text-white font-semibold" : "text-muted-foreground hover:text-white"}`}>{l.label}</a>
             ))}
           </div>
 
-          <div className="pl-8 ml-auto flex items-center gap-3">
+          {/* Right — back to home + hamburger */}
+          <div className="flex items-center gap-3 shrink-0">
             <a
               href="/"
               className="hidden md:flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
@@ -45,7 +46,6 @@ export default function Partners() {
               <ArrowLeft className="h-4 w-4" />
               Back to Home
             </a>
-            {/* Mobile hamburger */}
             <button
               className="md:hidden p-2 rounded-md text-muted-foreground hover:text-white hover:bg-white/5 transition-colors"
               onClick={() => setMenuOpen(o => !o)}
