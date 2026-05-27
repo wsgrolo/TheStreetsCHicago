@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { SiDiscord, SiTiktok, SiYoutube, SiX } from "react-icons/si";
+import { SiDiscord, SiTiktok, SiYoutube, SiX, SiInstagram, SiTwitch, SiKick } from "react-icons/si";
 import { ExternalLink, Users, Shield, MapPin, Server, ChevronDown, Menu, X, Crown } from "lucide-react";
 import logo from "@/assets/windycity-logo.png";
 import { Button } from "@/components/ui/button";
@@ -40,17 +40,27 @@ const owners = [
     name: "Owner Name",
     role: "Founder & Owner",
     initials: "OW",
-    discord: "discordusername",
     bio: "The visionary behind Windy City Roleplay. Built this community from the ground up.",
     color: "from-primary/30 to-primary/5",
+    socials: {
+      discord: "",
+      instagram: "",
+      twitch: "",
+      kick: "",
+    },
   },
   {
     name: "Owner Name",
     role: "Co-Owner",
     initials: "OW",
-    discord: "discordusername",
     bio: "Keeps the city running. Oversees server operations and community growth.",
     color: "from-blue-500/20 to-blue-500/5",
+    socials: {
+      discord: "",
+      instagram: "",
+      twitch: "",
+      kick: "",
+    },
   },
 ];
 
@@ -473,10 +483,39 @@ export default function Home() {
                     <span className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">{owner.role}</span>
                     <p className="text-muted-foreground text-sm leading-relaxed mb-6">{owner.bio}</p>
 
-                    {/* Discord tag */}
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground bg-white/5 border border-white/10 rounded-full px-4 py-2 group-hover:border-[#5865F2]/30 transition-colors">
-                      <SiDiscord className="h-4 w-4 text-[#5865F2]" />
-                      <span className="font-mono text-xs">{owner.discord}</span>
+                    {/* Socials */}
+                    <div className="flex items-center gap-3 flex-wrap justify-center">
+                      {owner.socials.discord && (
+                        <a href={owner.socials.discord} target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-4 py-2 hover:bg-[#5865F2]/10 hover:border-[#5865F2]/40 hover:text-white transition-all">
+                          <SiDiscord className="h-3.5 w-3.5 text-[#5865F2]" />
+                          Discord
+                        </a>
+                      )}
+                      {owner.socials.instagram && (
+                        <a href={owner.socials.instagram} target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-4 py-2 hover:bg-pink-500/10 hover:border-pink-500/40 hover:text-white transition-all">
+                          <SiInstagram className="h-3.5 w-3.5 text-pink-400" />
+                          Instagram
+                        </a>
+                      )}
+                      {owner.socials.twitch && (
+                        <a href={owner.socials.twitch} target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-4 py-2 hover:bg-purple-500/10 hover:border-purple-500/40 hover:text-white transition-all">
+                          <SiTwitch className="h-3.5 w-3.5 text-purple-400" />
+                          Twitch
+                        </a>
+                      )}
+                      {owner.socials.kick && (
+                        <a href={owner.socials.kick} target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-4 py-2 hover:bg-green-500/10 hover:border-green-500/40 hover:text-white transition-all">
+                          <SiKick className="h-3.5 w-3.5 text-green-400" />
+                          Kick
+                        </a>
+                      )}
+                      {!owner.socials.discord && !owner.socials.instagram && !owner.socials.twitch && !owner.socials.kick && (
+                        <span className="text-xs text-muted-foreground/40 italic">No socials added yet</span>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
