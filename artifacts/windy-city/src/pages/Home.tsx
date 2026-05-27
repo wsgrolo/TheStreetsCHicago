@@ -51,6 +51,7 @@ const owners = [
       kick: "https://kick.com/annoying",
       tiktok: "https://www.tiktok.com/@mariohtxx",
       twitter: "https://x.com/mariohtxx",
+      youtube: "https://www.youtube.com/@MoreAnnoying",
     },
   },
   {
@@ -538,7 +539,13 @@ export default function Home() {
                           <SiX className="h-3 w-3 text-white/60" />X
                         </a>
                       )}
-                      {!owner.socials.discord && !owner.socials.instagram && !owner.socials.twitch && !owner.socials.kick && !owner.socials.tiktok && !owner.socials.twitter && (
+                      {owner.socials.youtube && (
+                        <a href={owner.socials.youtube} target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-red-500/10 hover:border-red-500/40 hover:text-white transition-all">
+                          <SiYoutube className="h-3 w-3 text-red-500" />YouTube
+                        </a>
+                      )}
+                      {!owner.socials.discord && !owner.socials.instagram && !owner.socials.twitch && !owner.socials.kick && !owner.socials.tiktok && !owner.socials.twitter && !owner.socials.youtube && (
                         <span className="text-xs text-muted-foreground/40 italic">No socials added yet</span>
                       )}
                     </div>
