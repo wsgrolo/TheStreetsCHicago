@@ -70,7 +70,7 @@ export default function Home() {
       {/* Navbar */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || menuOpen ? 'bg-background/95 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-6 flex items-center gap-0">
-          <a href="#" className="flex items-center gap-3 group pr-8 border-r border-white/10">
+          <a href="#" className="flex items-center gap-3 group pr-4 md:pr-8 md:border-r md:border-white/10">
             <img src={logo} alt="Windy City RP Logo" className="h-10 w-auto group-hover:scale-105 transition-transform" />
             <span className="font-bold text-xl tracking-tight hidden sm:block">WINDY CITY <span className="text-primary">RP</span></span>
           </a>
