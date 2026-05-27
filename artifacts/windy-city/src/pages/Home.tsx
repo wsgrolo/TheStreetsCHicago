@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { SiDiscord, SiTiktok, SiYoutube, SiX } from "react-icons/si";
-import { ExternalLink, Users, Shield, MapPin, Server, ChevronDown } from "lucide-react";
+import { ExternalLink, Users, Shield, MapPin, Server, ChevronDown, Menu, X } from "lucide-react";
 import logo from "@/assets/windycity-logo.png";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -44,6 +44,7 @@ const features = [
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
   const y = useTransform(scrollY, [0, 500], [0, 150]);
@@ -56,32 +57,78 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navLinks = [
+    { label: "About", href: "#about" },
+    { label: "Features", href: "#features" },
+    { label: "Community", href: "#community" },
+    { label: "Factions", href: "#factions" },
+    { label: "Partners", href: "/partners" },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Navbar */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/90 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || menuOpen ? 'bg-background/95 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-6 flex items-center gap-0">
           <a href="#" className="flex items-center gap-3 group pr-8 border-r border-white/10">
             <img src={logo} alt="Windy City RP Logo" className="h-10 w-auto group-hover:scale-105 transition-transform" />
             <span className="font-bold text-xl tracking-tight hidden sm:block">WINDY CITY <span className="text-primary">RP</span></span>
           </a>
 
+          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium flex-1 justify-center px-8 border-r border-white/10">
-            <a href="#about" className="text-muted-foreground hover:text-white transition-colors">About</a>
-            <a href="#features" className="text-muted-foreground hover:text-white transition-colors">Features</a>
-            <a href="#community" className="text-muted-foreground hover:text-white transition-colors">Community</a>
-            <a href="#factions" className="text-muted-foreground hover:text-white transition-colors">Factions</a>
-            <a href="/partners" className="text-muted-foreground hover:text-white transition-colors">Partners</a>
+            {navLinks.map(l => (
+              <a key={l.label} href={l.href} className="text-muted-foreground hover:text-white transition-colors">{l.label}</a>
+            ))}
           </div>
 
-          <div className="pl-8 ml-auto">
-            <Button asChild className="rounded-full px-6 font-bold shadow-[0_0_15px_rgba(74,130,214,0.35)] hover:shadow-[0_0_25px_rgba(74,130,214,0.65)] transition-all border-none bg-primary text-primary-foreground hover:bg-primary/90">
+          <div className="pl-8 ml-auto flex items-center gap-3">
+            <Button asChild className="hidden md:inline-flex rounded-full px-6 font-bold shadow-[0_0_15px_rgba(74,130,214,0.35)] hover:shadow-[0_0_25px_rgba(74,130,214,0.65)] transition-all border-none bg-primary text-primary-foreground hover:bg-primary/90">
               <a href="https://discord.com/invite/windycityrp" target="_blank" rel="noopener noreferrer">
                 Join Now
               </a>
             </Button>
+            {/* Mobile hamburger */}
+            <button
+              className="md:hidden p-2 rounded-md text-muted-foreground hover:text-white hover:bg-white/5 transition-colors"
+              onClick={() => setMenuOpen(o => !o)}
+              aria-label="Toggle menu"
+              data-testid="button-mobile-menu"
+            >
+              {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile dropdown */}
+        <motion.div
+          initial={false}
+          animate={menuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+          transition={{ duration: 0.25, ease: "easeInOut" }}
+          className="md:hidden overflow-hidden border-t border-white/5"
+        >
+          <div className="container mx-auto px-6 py-4 flex flex-col gap-1">
+            {navLinks.map(l => (
+              <a
+                key={l.label}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="text-sm font-medium text-muted-foreground hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg transition-colors"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href="https://discord.com/invite/windycityrp"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="mt-2 text-center text-sm font-bold bg-primary text-primary-foreground px-4 py-3 rounded-full hover:bg-primary/90 transition-colors"
+            >
+              Join Now
+            </a>
+          </div>
+        </motion.div>
       </nav>
 
       {/* Hero Section */}
