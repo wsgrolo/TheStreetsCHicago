@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { SiDiscord, SiTiktok, SiYoutube, SiX } from "react-icons/si";
-import { ExternalLink, Users, Shield, MapPin, Server, ChevronDown, Menu, X } from "lucide-react";
+import { ExternalLink, Users, Shield, MapPin, Server, ChevronDown, Menu, X, Crown } from "lucide-react";
 import logo from "@/assets/windycity-logo.png";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -35,6 +35,25 @@ const factionLinks = [
   { name: "Civilian Roleplay", url: "https://discord.com/invite/E3vRam4g4m", avatar: civilianAvatar, description: "Civilian life" },
 ];
 
+const owners = [
+  {
+    name: "Owner Name",
+    role: "Founder & Owner",
+    initials: "OW",
+    discord: "discordusername",
+    bio: "The visionary behind Windy City Roleplay. Built this community from the ground up.",
+    color: "from-primary/30 to-primary/5",
+  },
+  {
+    name: "Owner Name",
+    role: "Co-Owner",
+    initials: "OW",
+    discord: "discordusername",
+    bio: "Keeps the city running. Oversees server operations and community growth.",
+    color: "from-blue-500/20 to-blue-500/5",
+  },
+];
+
 const features = [
   { icon: Shield, title: "Serious Roleplay", description: "Immersive, high-quality roleplay with dedicated players and strict moderation." },
   { icon: MapPin, title: "Chicago Setting", description: "Experience a meticulously crafted world inspired by the gritty streets of Chicago." },
@@ -62,6 +81,7 @@ export default function Home() {
     { label: "Features", href: "#features" },
     { label: "Community", href: "#community" },
     { label: "Factions", href: "#factions" },
+    { label: "Team", href: "#team" },
     { label: "Partners", href: "/partners" },
   ];
 
@@ -397,6 +417,70 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </motion.a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Owners / Leadership Section */}
+      <section id="team" className="py-24 md:py-32 relative bg-black/50">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="container mx-auto px-6 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center gap-2 text-primary text-sm font-semibold uppercase tracking-widest mb-4">
+              <Crown className="h-4 w-4" />
+              <span>Leadership</span>
+              <Crown className="h-4 w-4" />
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">
+              Meet The <span className="text-primary">Owners</span>
+            </h2>
+            <p className="text-muted-foreground mt-4 text-lg max-w-xl mx-auto">
+              The people who built Windy City Roleplay and keep the city alive every day.
+            </p>
+          </motion.div>
+
+          <div className={`grid gap-8 justify-center ${owners.length === 1 ? "grid-cols-1 max-w-sm mx-auto" : owners.length === 2 ? "grid-cols-1 md:grid-cols-2 max-w-2xl mx-auto" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}`}>
+            {owners.map((owner, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.15 }}
+              >
+                <Card className="bg-white/[0.02] border-white/5 hover:border-primary/30 transition-all duration-300 overflow-hidden relative group h-full">
+                  <div className={`absolute inset-0 bg-gradient-to-b ${owner.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                  <CardContent className="p-8 flex flex-col items-center text-center relative z-10">
+                    {/* Avatar */}
+                    <div className="relative mb-6">
+                      <div className={`h-24 w-24 rounded-full bg-gradient-to-br ${owner.color} border-2 border-primary/30 flex items-center justify-center text-2xl font-black text-white shadow-[0_0_30px_rgba(74,130,214,0.2)]`}>
+                        {owner.initials}
+                      </div>
+                      <div className="absolute -bottom-1 -right-1 h-7 w-7 rounded-full bg-primary flex items-center justify-center border-2 border-background">
+                        <Crown className="h-3.5 w-3.5 text-white" />
+                      </div>
+                    </div>
+
+                    {/* Info */}
+                    <h3 className="text-2xl font-bold mb-1 group-hover:text-primary transition-colors">{owner.name}</h3>
+                    <span className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">{owner.role}</span>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-6">{owner.bio}</p>
+
+                    {/* Discord tag */}
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground bg-white/5 border border-white/10 rounded-full px-4 py-2 group-hover:border-[#5865F2]/30 transition-colors">
+                      <SiDiscord className="h-4 w-4 text-[#5865F2]" />
+                      <span className="font-mono text-xs">{owner.discord}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
