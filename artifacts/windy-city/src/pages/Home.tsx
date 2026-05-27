@@ -87,6 +87,22 @@ export default function Home() {
           style={{ opacity, y }}
           className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center"
         >
+          <motion.img 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            src={logo} 
+            alt="Windy City Logo" 
+            className="w-48 md:w-64 mb-8 drop-shadow-2xl" 
+          />
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 text-center text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60"
+          >
+            Welcome to the <br /> <span className="text-primary drop-shadow-[0_0_20px_rgba(74,130,214,0.55)] bg-none bg-primary text-transparent bg-clip-text">Windy City</span>
+          </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
