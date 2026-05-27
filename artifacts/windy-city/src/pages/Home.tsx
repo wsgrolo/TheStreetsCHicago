@@ -19,6 +19,7 @@ import judiciaryAvatar from "@/assets/social/judiciary.png";
 import civilianAvatar from "@/assets/social/civilian.png";
 import owner1Avatar from "@/assets/social/owner1.png";
 import owner2Avatar from "@/assets/social/owner2.png";
+import owner3Avatar from "@/assets/social/owner3.png";
 
 const socialLinks = [
   { name: "Main City", url: "https://discord.com/invite/windycityrp", icon: SiDiscord, avatar: discordAvatar, color: "hover:text-[#5865F2]", accent: "#5865F2", description: "Join our active community" },
@@ -64,11 +65,30 @@ const owners = [
     color: "from-blue-500/20 to-blue-500/5",
     socials: {
       discord: "https://discord.com/invite/RxfAHxYFwh",
+      discordLabel: "",
       instagram: "https://www.instagram.com/blcxvi/",
       twitch: "https://www.twitch.tv/zartyy",
       kick: "https://kick.com/zarty",
       tiktok: "https://www.tiktok.com/@zartyxvi",
       twitter: "https://x.com/kozarty",
+      youtube: "",
+    },
+  },
+  {
+    name: "Capp",
+    role: "Co-Owner",
+    initials: "CA",
+    photo: owner3Avatar,
+    bio: "Keeps the city running. Oversees server operations and community growth.",
+    color: "from-indigo-500/20 to-indigo-500/5",
+    socials: {
+      discord: "https://discord.com/invite/zjxAsXH",
+      discordLabel: "302",
+      instagram: "https://www.instagram.com/capthagod",
+      twitch: "",
+      kick: "",
+      tiktok: "https://www.tiktok.com/@cappttv",
+      twitter: "https://x.com/capthagod",
       youtube: "",
     },
   },
@@ -508,7 +528,7 @@ export default function Home() {
                       {owner.socials.discord && (
                         <a href={owner.socials.discord} target="_blank" rel="noopener noreferrer"
                           className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-[#5865F2]/10 hover:border-[#5865F2]/40 hover:text-white transition-all">
-                          <SiDiscord className="h-3 w-3 text-[#5865F2]" />Discord
+                          <SiDiscord className="h-3 w-3 text-[#5865F2]" />{owner.socials.discordLabel || "Discord"}
                         </a>
                       )}
                       {owner.socials.instagram && (
