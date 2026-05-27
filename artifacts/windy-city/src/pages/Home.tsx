@@ -60,13 +60,13 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Navbar */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/90 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
-        <div className="container mx-auto px-6 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-3 group">
+        <div className="container mx-auto px-6 flex items-center gap-0">
+          <a href="#" className="flex items-center gap-3 group pr-8 border-r border-white/10">
             <img src={logo} alt="Windy City RP Logo" className="h-10 w-auto group-hover:scale-105 transition-transform" />
             <span className="font-bold text-xl tracking-tight hidden sm:block">WINDY CITY <span className="text-primary">RP</span></span>
           </a>
-          
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium flex-1 justify-center px-8 border-r border-white/10">
             <a href="#about" className="text-muted-foreground hover:text-white transition-colors">About</a>
             <a href="#features" className="text-muted-foreground hover:text-white transition-colors">Features</a>
             <a href="#community" className="text-muted-foreground hover:text-white transition-colors">Community</a>
@@ -74,11 +74,13 @@ export default function Home() {
             <a href="/partners" className="text-muted-foreground hover:text-white transition-colors">Partners</a>
           </div>
 
-          <Button asChild className="rounded-full px-6 font-bold shadow-[0_0_15px_rgba(74,130,214,0.35)] hover:shadow-[0_0_25px_rgba(74,130,214,0.65)] transition-all border-none bg-primary text-primary-foreground hover:bg-primary/90">
-            <a href="https://discord.com/invite/windycityrp" target="_blank" rel="noopener noreferrer">
-              Join Now
-            </a>
-          </Button>
+          <div className="pl-8 ml-auto">
+            <Button asChild className="rounded-full px-6 font-bold shadow-[0_0_15px_rgba(74,130,214,0.35)] hover:shadow-[0_0_25px_rgba(74,130,214,0.65)] transition-all border-none bg-primary text-primary-foreground hover:bg-primary/90">
+              <a href="https://discord.com/invite/windycityrp" target="_blank" rel="noopener noreferrer">
+                Join Now
+              </a>
+            </Button>
+          </div>
         </div>
       </nav>
 
