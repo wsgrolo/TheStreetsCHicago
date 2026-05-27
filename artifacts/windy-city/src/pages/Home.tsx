@@ -17,6 +17,7 @@ import cpdAvatar from "@/assets/social/cpd.png";
 import bmcAvatar from "@/assets/social/bmc.png";
 import judiciaryAvatar from "@/assets/social/judiciary.png";
 import civilianAvatar from "@/assets/social/civilian.png";
+import owner1Avatar from "@/assets/social/owner1.png";
 
 const socialLinks = [
   { name: "Main City", url: "https://discord.com/invite/windycityrp", icon: SiDiscord, avatar: discordAvatar, color: "hover:text-[#5865F2]", accent: "#5865F2", description: "Join our active community" },
@@ -40,6 +41,7 @@ const owners = [
     name: "Owner Name",
     role: "Founder & Owner",
     initials: "OW",
+    photo: owner1Avatar,
     bio: "The visionary behind Windy City Roleplay. Built this community from the ground up.",
     color: "from-primary/30 to-primary/5",
     socials: {
@@ -53,6 +55,7 @@ const owners = [
     name: "Owner Name",
     role: "Co-Owner",
     initials: "OW",
+    photo: "",
     bio: "Keeps the city running. Oversees server operations and community growth.",
     color: "from-blue-500/20 to-blue-500/5",
     socials: {
@@ -472,9 +475,17 @@ export default function Home() {
                   <CardContent className="p-8 flex flex-col items-center text-center relative z-10">
                     {/* Avatar */}
                     <div className="relative mb-6">
-                      <div className={`h-24 w-24 rounded-full bg-gradient-to-br ${owner.color} border-2 border-primary/30 flex items-center justify-center text-2xl font-black text-white shadow-[0_0_30px_rgba(74,130,214,0.2)]`}>
-                        {owner.initials}
-                      </div>
+                      {owner.photo ? (
+                        <img
+                          src={owner.photo}
+                          alt={owner.name}
+                          className="h-24 w-24 rounded-full object-cover border-2 border-primary/40 shadow-[0_0_30px_rgba(74,130,214,0.25)]"
+                        />
+                      ) : (
+                        <div className={`h-24 w-24 rounded-full bg-gradient-to-br ${owner.color} border-2 border-primary/30 flex items-center justify-center text-2xl font-black text-white shadow-[0_0_30px_rgba(74,130,214,0.2)]`}>
+                          {owner.initials}
+                        </div>
+                      )}
                       <div className="absolute -bottom-1 -right-1 h-7 w-7 rounded-full bg-primary flex items-center justify-center border-2 border-background">
                         <Crown className="h-3.5 w-3.5 text-white" />
                       </div>
@@ -546,9 +557,17 @@ export default function Home() {
                 title={`${owner.name} — ${owner.role}`}
                 className="group shrink-0"
               >
-                <div className={`h-8 w-8 rounded-full bg-gradient-to-br ${owner.color} border border-white/15 group-hover:border-primary/60 flex items-center justify-center text-xs font-black text-white group-hover:shadow-[0_0_12px_rgba(74,130,214,0.4)] transition-all duration-300`}>
-                  {owner.initials}
-                </div>
+                {owner.photo ? (
+                  <img
+                    src={owner.photo}
+                    alt={owner.name}
+                    className="h-8 w-8 rounded-full object-cover border border-white/15 group-hover:border-primary/60 group-hover:shadow-[0_0_12px_rgba(74,130,214,0.4)] transition-all duration-300"
+                  />
+                ) : (
+                  <div className={`h-8 w-8 rounded-full bg-gradient-to-br ${owner.color} border border-white/15 group-hover:border-primary/60 flex items-center justify-center text-xs font-black text-white group-hover:shadow-[0_0_12px_rgba(74,130,214,0.4)] transition-all duration-300`}>
+                    {owner.initials}
+                  </div>
+                )}
               </a>
             ))}
             <span className="text-white/20 hidden sm:block">·</span>
