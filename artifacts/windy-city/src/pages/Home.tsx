@@ -18,6 +18,7 @@ import bmcAvatar from "@/assets/social/bmc.png";
 import judiciaryAvatar from "@/assets/social/judiciary.png";
 import civilianAvatar from "@/assets/social/civilian.png";
 import owner1Avatar from "@/assets/social/owner1.png";
+import owner2Avatar from "@/assets/social/owner2.png";
 
 const socialLinks = [
   { name: "Main City", url: "https://discord.com/invite/windycityrp", icon: SiDiscord, avatar: discordAvatar, color: "hover:text-[#5865F2]", accent: "#5865F2", description: "Join our active community" },
@@ -55,19 +56,20 @@ const owners = [
     },
   },
   {
-    name: "Owner Name",
+    name: "Zarty",
     role: "Co-Owner",
-    initials: "OW",
-    photo: "",
+    initials: "ZA",
+    photo: owner2Avatar,
     bio: "Keeps the city running. Oversees server operations and community growth.",
     color: "from-blue-500/20 to-blue-500/5",
     socials: {
-      discord: "",
-      instagram: "",
-      twitch: "",
-      kick: "",
-      tiktok: "",
-      twitter: "",
+      discord: "https://discord.com/invite/RxfAHxYFwh",
+      instagram: "https://www.instagram.com/blcxvi/",
+      twitch: "https://www.twitch.tv/zartyy",
+      kick: "https://kick.com/zarty",
+      tiktok: "https://www.tiktok.com/@zartyxvi",
+      twitter: "https://x.com/kozarty",
+      youtube: "",
     },
   },
 ];
