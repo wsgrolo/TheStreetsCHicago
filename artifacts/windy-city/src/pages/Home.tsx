@@ -185,6 +185,45 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Trailer Section */}
+      <section id="trailer" className="py-24 md:py-32 relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="container mx-auto px-6 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
+              See It In <span className="text-primary">Action</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Watch the official server trailer and see what Windy City Roleplay is all about.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7 }}
+            className="relative rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_60px_rgba(74,130,214,0.12)]"
+            style={{ paddingBottom: "56.25%" }}
+          >
+            <iframe
+              src="https://www.youtube.com/embed/vZh03_1kCsM?si=KbaIAfUVYVlr_CK-&rel=0&modestbranding=1"
+              title="Windy City Roleplay — Official Server Trailer"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              data-testid="video-trailer"
+              className="absolute inset-0 w-full h-full"
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Community / Links Section */}
       <section id="community" className="py-24 relative bg-black/50">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
