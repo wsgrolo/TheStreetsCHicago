@@ -12,6 +12,11 @@ import forumsAvatar from "@/assets/social/forums.png";
 import tiktokAvatar from "@/assets/social/tiktok.jpg";
 import youtubeAvatar from "@/assets/social/youtube.jpg";
 import twitterAvatar from "@/assets/social/twitter.jpg";
+import factionAvatar from "@/assets/social/faction.png";
+import cpdAvatar from "@/assets/social/cpd.png";
+import bmcAvatar from "@/assets/social/bmc.png";
+import judiciaryAvatar from "@/assets/social/judiciary.png";
+import civilianAvatar from "@/assets/social/civilian.png";
 
 const socialLinks = [
   { name: "Main City", url: "https://discord.com/invite/windycityrp", icon: SiDiscord, avatar: discordAvatar, color: "hover:text-[#5865F2]", accent: "#5865F2", description: "Join our active community" },
@@ -20,6 +25,14 @@ const socialLinks = [
   { name: "TikTok", url: "https://www.tiktok.com/@windy.city23", icon: SiTiktok, avatar: tiktokAvatar, color: "hover:text-[#00f2fe]", accent: "#69C9D0", description: "Watch our clips" },
   { name: "YouTube", url: "https://www.youtube.com/@WindyCityChicagoRP", icon: SiYoutube, avatar: youtubeAvatar, color: "hover:text-[#FF0000]", accent: "#FF0000", description: "Server highlights" },
   { name: "Twitter/X", url: "https://x.com/WindyCityRP", icon: SiX, avatar: twitterAvatar, color: "hover:text-white", accent: "#e7e9ea", description: "Latest updates" }
+];
+
+const factionLinks = [
+  { name: "Faction Community", url: "https://discord.com/invite/R2FnTbDrry", avatar: factionAvatar, description: "All factions hub" },
+  { name: "Chicago Police Dept.", url: "https://discord.com/invite/eG6XNQqxYZ", avatar: cpdAvatar, description: "Law enforcement" },
+  { name: "Blackstone Medical Center", url: "https://discord.com/invite/UUKQPy3ua3", avatar: bmcAvatar, description: "Medical services" },
+  { name: "The Judiciary", url: "https://discord.com/invite/vedbKgMM8d", avatar: judiciaryAvatar, description: "Courts & justice" },
+  { name: "Civilian Roleplay", url: "https://discord.com/invite/E3vRam4g4m", avatar: civilianAvatar, description: "Civilian life" },
 ];
 
 const features = [
@@ -270,6 +283,63 @@ export default function Home() {
                     </div>
                     <div>
                       <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{link.name}</h3>
+                      <p className="text-sm text-muted-foreground">{link.description}</p>
+                    </div>
+                    <ExternalLink className="h-4 w-4 text-white/20 ml-auto group-hover:text-white/50 transition-colors" />
+                  </CardContent>
+                </Card>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Faction Communities Section */}
+      <section id="factions" className="py-24 relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="container mx-auto px-6 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
+              Faction <span className="text-primary">Communities</span>
+            </h2>
+            <p className="text-muted-foreground">Join a faction and find your role in the city.</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {factionLinks.map((link, idx) => (
+              <motion.a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.07 }}
+                className="group block outline-none"
+                data-testid={`link-faction-${idx}`}
+              >
+                <Card className="bg-white/[0.02] border-white/5 hover:bg-white/[0.04] hover:border-[#5865F2]/30 transition-all duration-300 overflow-hidden relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#5865F2]/0 group-hover:from-[#5865F2]/5 to-transparent transition-colors duration-500" />
+                  <CardContent className="p-6 flex items-center gap-5 relative z-10">
+                    <div className="relative flex-shrink-0">
+                      <img
+                        src={link.avatar}
+                        alt={link.name}
+                        className="h-12 w-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-[#5865F2]/40 transition-all"
+                      />
+                      <div className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full flex items-center justify-center bg-card border border-white/10">
+                        <SiDiscord className="h-3 w-3 text-[#5865F2]" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg group-hover:text-[#5865F2] transition-colors">{link.name}</h3>
                       <p className="text-sm text-muted-foreground">{link.description}</p>
                     </div>
                     <ExternalLink className="h-4 w-4 text-white/20 ml-auto group-hover:text-white/50 transition-colors" />
