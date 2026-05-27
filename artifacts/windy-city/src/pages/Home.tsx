@@ -526,7 +526,7 @@ export default function Home() {
                     {/* Socials */}
                     <div className="flex items-center gap-2 flex-wrap justify-center">
                       {owner.socials.discord && (
-                        <a href={owner.socials.discord} target="_blank" rel="noopener noreferrer"
+                        <a href={owner.socials.discorddiscord} target="_blank" rel="noopener noreferrer"
                           className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-[#5865F2]/10 hover:border-[#5865F2]/40 hover:text-white transition-all">
                           <SiDiscord className="h-3 w-3 text-[#5865F2]" />{owner.socials.discordLabel || "Discord"}
                         </a>
