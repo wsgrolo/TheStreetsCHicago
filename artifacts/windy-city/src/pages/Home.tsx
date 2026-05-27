@@ -87,22 +87,6 @@ export default function Home() {
           style={{ opacity, y }}
           className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center"
         >
-          <motion.img 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            src={logo} 
-            alt="Windy City Logo" 
-            className="w-48 md:w-64 mb-8 drop-shadow-2xl" 
-          />
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60"
-          >
-            Welcome to the <br /> <span className="text-primary drop-shadow-[0_0_20px_rgba(74,130,214,0.55)] bg-none bg-primary text-transparent bg-clip-text">Windy City</span>
-          </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -213,9 +197,9 @@ export default function Home() {
             style={{ paddingBottom: "56.25%" }}
           >
             <iframe
-              src="https://www.youtube.com/embed/vZh03_1kCsM?si=KbaIAfUVYVlr_CK-&rel=0&modestbranding=1"
+              src="https://www.youtube.com/embed/vZh03_1kCsM?autoplay=1&mute=1&rel=0&modestbranding=1&loop=1&playlist=vZh03_1kCsM"
               title="Windy City Roleplay — Official Server Trailer"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               data-testid="video-trailer"
               className="absolute inset-0 w-full h-full"
