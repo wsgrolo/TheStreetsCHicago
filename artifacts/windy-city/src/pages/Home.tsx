@@ -38,7 +38,7 @@ const factionLinks = [
 
 const owners = [
   {
-    name: "ANnoying",
+    name: "Annoying",
     role: "Founder & Owner",
     initials: "AN",
     photo: owner1Avatar,
