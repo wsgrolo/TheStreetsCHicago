@@ -44,7 +44,7 @@ const owners = [
     role: "Founder & Owner",
     initials: "AN",
     photo: owner1Avatar,
-    bio: "The visionary behind Windy City Roleplay. Built this community from the ground up.",
+    bio: "The original architect of Windy City Roleplay. Annoying turned a vision into reality — building this server from nothing and setting the standard for what serious Chicago roleplay looks like. His dedication to quality and community is the heartbeat of this city.",
     color: "from-primary/30 to-primary/5",
     socials: {
       discord: "",
@@ -58,10 +58,10 @@ const owners = [
   },
   {
     name: "Zarty",
-    role: "Co-Owner",
+    role: "Founder & Owner",
     initials: "ZA",
     photo: owner2Avatar,
-    bio: "Keeps the city running. Oversees server operations and community growth.",
+    bio: "A pillar of the Windy City since day one. Zarty brings the operational muscle that keeps the server running at the highest level — managing staff, shaping server direction, and ensuring every player feels the weight of a world built with purpose.",
     color: "from-blue-500/20 to-blue-500/5",
     socials: {
       discord: "https://discord.com/invite/RxfAHxYFwh",
@@ -76,10 +76,10 @@ const owners = [
   },
   {
     name: "Capp",
-    role: "Co-Owner",
+    role: "Founder & Owner",
     initials: "CA",
     photo: owner3Avatar,
-    bio: "Keeps the city running. Oversees server operations and community growth.",
+    bio: "The culture behind the city. Capp is the creative force driving community energy, faction life, and the stories that make Windy City Roleplay unforgettable. His presence sets the tone — raw, authentic, and built for those who take the game seriously.",
     color: "from-indigo-500/20 to-indigo-500/5",
     socials: {
       discord: "https://discord.com/invite/zjxAsXH",
