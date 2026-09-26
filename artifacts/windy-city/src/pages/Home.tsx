@@ -1,647 +1,225 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { SiDiscord, SiTiktok, SiYoutube, SiX, SiInstagram, SiTwitch, SiKick } from "react-icons/si";
-import { ExternalLink, Users, Shield, MapPin, Server, ChevronDown, Menu, X, Crown } from "lucide-react";
-import logo from "@/assets/windycity-logo.png";
+import { SiDiscord, SiInstagram, SiTwitch, SiKick } from "react-icons/si";
+import { ArrowUpRight, ChevronDown, Crown, ExternalLink, Film, MapPin, Menu, Radio, Server, Shield, Users, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import heroVideo from "@/assets/hero-bg.mp4";
-import discordAvatar from "@/assets/social/discord.png";
-import tebexAvatar from "@/assets/social/tebex.png";
-import forumsAvatar from "@/assets/social/forums.png";
-import tiktokAvatar from "@/assets/social/tiktok.jpg";
-import youtubeAvatar from "@/assets/social/youtube.jpg";
-import twitterAvatar from "@/assets/social/twitter.jpg";
-import factionAvatar from "@/assets/social/faction.png";
-import cpdAvatar from "@/assets/social/cpd.png";
-import bmcAvatar from "@/assets/social/bmc.png";
-import judiciaryAvatar from "@/assets/social/judiciary.png";
-import civilianAvatar from "@/assets/social/civilian.png";
-import owner1Avatar from "@/assets/social/owner1.png";
-import owner2Avatar from "@/assets/social/owner2.png";
-import owner3Avatar from "@/assets/social/owner3.png";
+import { siteConfig } from "@/site-config";
 
-const socialLinks = [
-  { name: "Main City", url: "https://discord.com/invite/windycityrp", icon: SiDiscord, avatar: discordAvatar, color: "hover:text-[#5865F2]", accent: "#5865F2", description: "Join our active community" },
-  { name: "Tebex Store", url: "https://windycityrp.tebex.io/", icon: ExternalLink, avatar: tebexAvatar, color: "hover:text-primary", accent: "hsl(213 68% 52%)", description: "Support the server" },
-  { name: "Forums", url: "https://windycity.community.forum/threads/server-guidelines.1/", icon: Users, avatar: forumsAvatar, color: "hover:text-primary", accent: "hsl(213 68% 52%)", description: "Read the rules" },
-  { name: "TikTok", url: "https://www.tiktok.com/@windy.city23", icon: SiTiktok, avatar: tiktokAvatar, color: "hover:text-[#00f2fe]", accent: "#69C9D0", description: "Watch our clips" },
-  { name: "YouTube", url: "https://www.youtube.com/@WindyCityChicagoRP", icon: SiYoutube, avatar: youtubeAvatar, color: "hover:text-[#FF0000]", accent: "#FF0000", description: "Server highlights" },
-  { name: "Twitter/X", url: "https://x.com/WindyCityRP", icon: SiX, avatar: twitterAvatar, color: "hover:text-white", accent: "#e7e9ea", description: "Latest updates" }
-];
-
-const factionLinks = [
-  { name: "Faction Community", url: "https://discord.com/invite/R2FnTbDrry", avatar: factionAvatar, description: "All factions hub" },
-  { name: "Chicago Police Dept.", url: "https://discord.com/invite/eG6XNQqxYZ", avatar: cpdAvatar, description: "Law enforcement" },
-  { name: "Blackstone Medical Center", url: "https://discord.com/invite/UUKQPy3ua3", avatar: bmcAvatar, description: "Medical services" },
-  { name: "The Judiciary", url: "https://discord.com/invite/vedbKgMM8d", avatar: judiciaryAvatar, description: "Courts & justice" },
-  { name: "Civilian Roleplay", url: "https://discord.com/invite/E3vRam4g4m", avatar: civilianAvatar, description: "Civilian life" },
-];
-
-const owners = [
-  {
-    name: "Annoying",
-    role: "Founder & Owner",
-    initials: "AN",
-    photo: owner1Avatar,
-    bio: "The original architect of Windy City Roleplay. Annoying turned a vision into reality — building this server from nothing and setting the standard for what serious Chicago roleplay looks like. His dedication to quality and community is the heartbeat of this city.",
-    color: "from-primary/30 to-primary/5",
-    socials: {
-      discord: "",
-      instagram: "https://www.instagram.com/mariohtxx",
-      twitch: "https://www.twitch.tv/annoying",
-      kick: "https://kick.com/annoying",
-      tiktok: "https://www.tiktok.com/@mariohtxx",
-      twitter: "https://x.com/mariohtxx",
-      youtube: "https://www.youtube.com/@MoreAnnoying",
-    },
-  },
-  {
-    name: "Zarty",
-    role: "Founder & Owner",
-    initials: "ZA",
-    photo: owner2Avatar,
-    bio: "A pillar of the Windy City since day one. Zarty brings the operational muscle that keeps the server running at the highest level — managing staff, shaping server direction, and ensuring every player feels the weight of a world built with purpose.",
-    color: "from-blue-500/20 to-blue-500/5",
-    socials: {
-      discord: "https://discord.com/invite/RxfAHxYFwh",
-      discordLabel: "",
-      instagram: "https://www.instagram.com/blcxvi/",
-      twitch: "https://www.twitch.tv/zartyy",
-      kick: "https://kick.com/zarty",
-      tiktok: "https://www.tiktok.com/@zartyxvi",
-      twitter: "https://x.com/kozarty",
-      youtube: "",
-    },
-  },
-  {
-    name: "Capp",
-    role: "Founder & Owner",
-    initials: "CA",
-    photo: owner3Avatar,
-    bio: "The culture behind the city. Capp is the creative force driving community energy, faction life, and the stories that make Windy City Roleplay unforgettable. His presence sets the tone — raw, authentic, and built for those who take the game seriously.",
-    color: "from-indigo-500/20 to-indigo-500/5",
-    socials: {
-      discord: "https://discord.com/invite/zjxAsXH",
-      discordLabel: "302",
-      instagram: "https://www.instagram.com/capthagod",
-      twitch: "",
-      kick: "",
-      tiktok: "https://www.tiktok.com/@cappttv",
-      twitter: "https://x.com/capthagod",
-      youtube: "",
-    },
-  },
-];
+const communityIcon = {
+  discord: SiDiscord,
+  store: ExternalLink,
+  forums: Users,
+} as const;
 
 const features = [
-  { icon: Shield, title: "Serious Roleplay", description: "Immersive, high-quality roleplay with dedicated players and strict moderation." },
-  { icon: MapPin, title: "Chicago Setting", description: "Experience a meticulously crafted world inspired by the gritty streets of Chicago." },
-  { icon: Users, title: "Active Community", description: "Join hundreds of active players, supportive staff, and endless storylines." },
-  { icon: Server, title: "Premium Performance", description: "Optimized FiveM framework ensuring smooth gameplay and reliable uptime." }
+  { icon: Shield, index: "01", title: "Roleplay with weight", description: "Rules protect the story, not the spectacle. Come ready to make choices that carry." },
+  { icon: MapPin, index: "02", title: "A city with a pulse", description: "From the blocks to the lakefront, every neighborhood has its own rhythm, pressure, and opportunity." },
+  { icon: Users, index: "03", title: "People, not player counts", description: "Build a name with crews, departments, businesses, and the strangers you meet after dark." },
+  { icon: Server, index: "04", title: "Made for the long run", description: "A tuned FiveM framework, active staff, and a city designed to keep your story moving." },
 ];
+
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Features", href: "#features" },
+  { label: "Community", href: "#community" },
+  { label: "Factions", href: "#factions" },
+  { label: "Team", href: "#team" },
+  { label: "Partners", href: "/partners" },
+];
+
+function ExternalAnchor({ href, children, className, onClick, ariaLabel }: { href: string; children: ReactNode; className?: string; onClick?: () => void; ariaLabel?: string }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className} onClick={onClick} aria-label={ariaLabel}>
+      {children}
+    </a>
+  );
+}
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
-  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const heroOpacity = useTransform(scrollY, [0, 520], [1, 0]);
+  const heroY = useTransform(scrollY, [0, 520], [0, 130]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "About", href: "#about" },
-    { label: "Features", href: "#features" },
-    { label: "Community", href: "#community" },
-    { label: "Factions", href: "#factions" },
-    { label: "Team", href: "#team" },
-    { label: "Partners", href: "/partners" },
-  ];
-
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Navbar */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || menuOpen ? 'bg-background/95 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
-        <div className="container mx-auto px-6 flex items-center justify-between gap-6">
-          {/* Left — logo */}
-          <a href="#" className="flex items-center gap-3 group shrink-0">
-            <img src={logo} alt="Windy City RP Logo" className="h-10 w-auto group-hover:scale-105 transition-transform" />
-            <span className="font-bold text-xl tracking-tight hidden sm:block">WINDY CITY <span className="text-primary">RP</span></span>
+    <div className="street-shell site-noise min-h-[100dvh] overflow-x-hidden text-foreground">
+      <nav className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${isScrolled || menuOpen ? "border-b border-white/10 bg-background/90 py-3 backdrop-blur-xl" : "bg-transparent py-5"}`} aria-label="Main navigation">
+        <div className="container mx-auto flex items-center justify-between gap-6 px-5 md:px-8">
+          <a href="/" className="group flex shrink-0 items-center gap-3" data-testid="link-brand-home">
+            <img src={siteConfig.brand.logo} alt="The Streets Chicago logo" className="h-10 w-10 object-contain transition-transform group-hover:scale-105" />
+            <span className="display-type text-xl font-bold tracking-wide text-foreground sm:text-2xl">
+              {siteConfig.brand.shortName} <span className="text-primary">/ {siteConfig.brand.descriptor}</span>
+            </span>
           </a>
-
-          {/* Center — nav links */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-            {navLinks.map(l => (
-              <a key={l.label} href={l.href} className="text-muted-foreground hover:text-white transition-colors">{l.label}</a>
+          <div className="hidden items-center gap-7 text-[0.68rem] font-bold uppercase tracking-[0.16em] md:flex">
+            {navLinks.map((link) => (
+              <a key={link.label} href={link.href} className="text-muted-foreground transition-colors hover:text-primary" data-testid={`link-nav-${link.label.toLowerCase()}`}>
+                {link.label}
+              </a>
             ))}
           </div>
-
-          {/* Right — Join Now + hamburger */}
-          <div className="flex items-center gap-3 shrink-0">
-            <Button asChild className="hidden md:inline-flex rounded-full px-6 font-bold shadow-[0_0_15px_rgba(74,130,214,0.35)] hover:shadow-[0_0_25px_rgba(74,130,214,0.65)] transition-all border-none bg-primary text-primary-foreground hover:bg-primary/90">
-              <a href="https://discord.com/invite/windycityrp" target="_blank" rel="noopener noreferrer">
-                Join Now
-              </a>
+          <div className="flex shrink-0 items-center gap-3">
+            <Button asChild className="hidden h-10 rounded-sm bg-primary px-5 text-xs font-bold uppercase tracking-widest text-primary-foreground shadow-[4px_4px_0_hsl(var(--accent))] transition-transform hover:-translate-y-0.5 hover:bg-primary md:inline-flex">
+              <ExternalAnchor href={siteConfig.links.discord} ariaLabel="Join The Streets Chicago Discord">Enter the city <ArrowUpRight className="ml-2 h-4 w-4" /></ExternalAnchor>
             </Button>
-            <button
-              className="md:hidden p-2 rounded-md text-muted-foreground hover:text-white hover:bg-white/5 transition-colors"
-              onClick={() => setMenuOpen(o => !o)}
-              aria-label="Toggle menu"
-              data-testid="button-mobile-menu"
-            >
-              {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <button className="rounded-sm border border-white/10 p-2 text-muted-foreground transition-colors hover:border-primary hover:text-primary md:hidden" onClick={() => setMenuOpen((open) => !open)} aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"} data-testid="button-mobile-menu">
+              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
-
-        {/* Mobile dropdown */}
-        <motion.div
-          initial={false}
-          animate={menuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-          transition={{ duration: 0.25, ease: "easeInOut" }}
-          className="md:hidden overflow-hidden border-t border-white/5"
-        >
-          <div className="container mx-auto px-6 py-4 flex flex-col gap-1">
-            {navLinks.map(l => (
-              <a
-                key={l.label}
-                href={l.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-sm font-medium text-muted-foreground hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg transition-colors"
-              >
-                {l.label}
+        <motion.div initial={false} animate={menuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }} transition={{ duration: 0.22 }} className="overflow-hidden border-t border-white/10 md:hidden">
+          <div className="container mx-auto flex flex-col gap-1 px-5 py-4">
+            {navLinks.map((link) => (
+              <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)} className="rounded-sm px-4 py-3 text-sm font-bold uppercase tracking-widest text-muted-foreground transition-colors hover:bg-white/5 hover:text-primary" data-testid={`link-mobile-${link.label.toLowerCase()}`}>
+                {link.label}
               </a>
             ))}
-            <a
-              href="https://discord.com/invite/windycityrp"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMenuOpen(false)}
-              className="mt-2 text-center text-sm font-bold bg-primary text-primary-foreground px-4 py-3 rounded-full hover:bg-primary/90 transition-colors"
-            >
-              Join Now
-            </a>
+            <ExternalAnchor href={siteConfig.links.discord} onClick={() => setMenuOpen(false)} className="mt-2 rounded-sm bg-primary px-4 py-3 text-center text-sm font-bold uppercase tracking-widest text-primary-foreground" ariaLabel="Join The Streets Chicago Discord">
+              Enter the city
+            </ExternalAnchor>
           </div>
         </motion.div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative h-[100dvh] flex items-center justify-center overflow-hidden">
-        {/* Background Video */}
-        <div className="absolute inset-0 w-full h-full z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-10" />
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline
-            className="w-full h-full object-cover"
-          >
-            <source src={heroVideo} type="video/mp4" />
-          </video>
-        </div>
-
-        <motion.div 
-          style={{ opacity, y }}
-          className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center"
-        >
-          <motion.img 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            src={logo} 
-            alt="Windy City Logo" 
-            className="w-48 md:w-64 mb-8 drop-shadow-2xl" 
-          />
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 text-center text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60"
-          >
-            Welcome to the <br /> <span className="text-primary drop-shadow-[0_0_20px_rgba(74,130,214,0.55)] bg-none bg-primary text-transparent bg-clip-text">Windy City</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl"
-          >
-            A premium FiveM roleplay experience set in the heart of Chicago. Serious RP, dedicated community, and endless possibilities.
-          </motion.p>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4"
-          >
-            <Button size="lg" asChild className="rounded-full px-8 text-base font-bold h-14 bg-primary text-primary-foreground hover:bg-primary/90">
-              <a href="https://discord.com/invite/windycityrp" target="_blank" rel="noopener noreferrer">
-                <SiDiscord className="mr-2 h-5 w-5" /> Join Discord
-              </a>
-            </Button>
-            <Button size="lg" variant="outline" asChild className="rounded-full px-8 text-base font-bold h-14 border-white/10 bg-white/5 hover:bg-white/10 backdrop-blur-sm">
-              <a href="https://windycityrp.tebex.io/" target="_blank" rel="noopener noreferrer">
-                Visit Store
-              </a>
-            </Button>
-          </motion.div>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce"
-        >
-          <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
-            <ChevronDown className="h-8 w-8" />
-          </a>
-        </motion.div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-24 md:py-32 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-        
-        <div className="container mx-auto px-6 max-w-6xl">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 uppercase tracking-tight">The City That <span className="text-primary">Never Sleeps</span></h2>
-            <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-              Windy City Roleplay is a top-tier FiveM server pushing the boundaries of what's possible in GTA V. We focus on high-quality, serious roleplay in a custom-built Chicago environment. Whether you want to enforce the law, run the streets, or build a legitimate empire, your story starts here.
-            </p>
-          </motion.div>
-
-          <div id="features" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-              >
-                <Card className="bg-white/[0.02] border-white/5 hover:border-primary/30 transition-colors duration-300 h-full">
-                  <CardContent className="p-6 flex flex-col items-center text-center">
-                    <div className="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                      <feature.icon className="h-7 w-7 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
-                  </CardContent>
-                </Card>
+      <main>
+        <section className="relative flex min-h-[100dvh] items-end overflow-hidden pb-20 pt-32 md:items-center md:pb-0">
+          <div className="absolute inset-0 z-0">
+            <video autoPlay muted loop playsInline className="h-full w-full object-cover opacity-65" poster={siteConfig.brand.logo}>
+              <source src={siteConfig.brand.heroVideo} type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,hsl(24_17%_7%/.98)_0%,hsl(24_17%_7%/.8)_38%,hsl(24_17%_7%/.25)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(0deg,hsl(24_17%_7%)_0%,transparent_30%,hsl(24_17%_7%/.45)_100%)]" />
+            <div className="hero-grid absolute inset-0 opacity-60" />
+          </div>
+          <motion.div style={{ opacity: heroOpacity, y: heroY }} className="container relative z-10 mx-auto px-5 md:px-8">
+            <div className="max-w-4xl">
+              <motion.div initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="mb-7 flex items-center gap-3">
+                <span className="h-px w-10 bg-primary" />
+                <span className="section-label">Chicago / FiveM roleplay / est. now</span>
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trailer Section */}
-      <section id="trailer" className="py-24 md:py-32 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-        <div className="container mx-auto px-6 max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
-              See It In <span className="text-primary">Action</span>
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Watch the official server trailer and see what Windy City Roleplay is all about.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7 }}
-            className="relative rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_60px_rgba(74,130,214,0.12)]"
-            style={{ paddingBottom: "56.25%" }}
-          >
-            <iframe
-              src="https://www.youtube.com/embed/vZh03_1kCsM?rel=0&modestbranding=1"
-              title="Windy City Roleplay — Official Server Trailer"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              data-testid="video-trailer"
-              className="absolute inset-0 w-full h-full"
-            />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Community / Links Section */}
-      <section id="community" className="py-24 relative bg-black/50">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-        
-        <div className="container mx-auto px-6 max-w-5xl">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tight">Connect With <span className="text-primary">Us</span></h2>
-            <p className="text-muted-foreground">Join our massive community across all platforms.</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {socialLinks.map((link, idx) => (
-              <motion.a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="group block outline-none"
-              >
-                <Card className="bg-white/[0.02] border-white/5 hover:bg-white/[0.04] transition-all duration-300 overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-transparent transition-colors duration-500" />
-                  <CardContent className="p-6 flex items-center gap-5 relative z-10">
-                    <div className="relative flex-shrink-0">
-                      <img
-                        src={link.avatar}
-                        alt={link.name}
-                        className="h-12 w-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-white/25 transition-all"
-                      />
-                      <div
-                        className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full flex items-center justify-center bg-card border border-white/10"
-                      >
-                        <link.icon className="h-3 w-3" style={{ color: link.accent }} />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{link.name}</h3>
-                      <p className="text-sm text-muted-foreground">{link.description}</p>
-                    </div>
-                    <ExternalLink className="h-4 w-4 text-white/20 ml-auto group-hover:text-white/50 transition-colors" />
-                  </CardContent>
-                </Card>
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Faction Communities Section */}
-      <section id="factions" className="py-24 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-        <div className="container mx-auto px-6 max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
-              Faction <span className="text-primary">Communities</span>
-            </h2>
-            <p className="text-muted-foreground">Join a faction and find your role in the city.</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {factionLinks.map((link, idx) => (
-              <motion.a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.07 }}
-                className="group block outline-none"
-                data-testid={`link-faction-${idx}`}
-              >
-                <Card className="bg-white/[0.02] border-white/5 hover:bg-white/[0.04] hover:border-[#5865F2]/30 transition-all duration-300 overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#5865F2]/0 group-hover:from-[#5865F2]/5 to-transparent transition-colors duration-500" />
-                  <CardContent className="p-6 flex items-center gap-5 relative z-10">
-                    <div className="relative flex-shrink-0">
-                      <img
-                        src={link.avatar}
-                        alt={link.name}
-                        className="h-12 w-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-[#5865F2]/40 transition-all"
-                      />
-                      <div className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full flex items-center justify-center bg-card border border-white/10">
-                        <SiDiscord className="h-3 w-3 text-[#5865F2]" />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg group-hover:text-[#5865F2] transition-colors">{link.name}</h3>
-                      <p className="text-sm text-muted-foreground">{link.description}</p>
-                    </div>
-                    <ExternalLink className="h-4 w-4 text-white/20 ml-auto group-hover:text-white/50 transition-colors" />
-                  </CardContent>
-                </Card>
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Owners / Leadership Section */}
-      <section id="team" className="py-24 md:py-32 relative bg-black/50">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-        <div className="container mx-auto px-6 max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-2 text-primary text-sm font-semibold uppercase tracking-widest mb-4">
-              <Crown className="h-4 w-4" />
-              <span>Leadership</span>
-              <Crown className="h-4 w-4" />
+              <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.12 }} className="display-type max-w-4xl text-[4.4rem] font-bold uppercase leading-[0.82] text-foreground sm:text-[6.6rem] md:text-[9.2rem]">
+                Make your<br /><span className="text-primary">name</span> here.
+              </motion.h1>
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.35 }} className="mt-8 max-w-xl border-l-2 border-primary pl-5 text-base leading-relaxed text-foreground/70 md:text-lg">
+                The streets remember everything. Step into a living Chicago where loyalty has a cost, ambition has a face, and your next move changes the block.
+              </motion.p>
+              <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.52 }} className="mt-9 flex flex-col gap-4 sm:flex-row">
+                <Button size="lg" asChild className="h-14 rounded-sm bg-primary px-8 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-[5px_5px_0_hsl(var(--accent))] hover:bg-primary/90">
+                  <ExternalAnchor href={siteConfig.links.discord} ariaLabel="Join The Streets Chicago Discord">Join the Discord <SiDiscord className="ml-3 h-5 w-5" /></ExternalAnchor>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="h-14 rounded-sm border-white/20 bg-black/20 px-8 text-sm font-bold uppercase tracking-widest text-foreground backdrop-blur-sm hover:border-primary hover:bg-primary/10 hover:text-primary">
+                  <a href="#about" data-testid="link-explore-city">Explore the city <ChevronDown className="ml-3 h-5 w-5" /></a>
+                </Button>
+              </motion.div>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">
-              Meet The <span className="text-primary">Owners</span>
-            </h2>
-            <p className="text-muted-foreground mt-4 text-lg max-w-xl mx-auto">
-              The people who built Windy City Roleplay and keep the city alive every day.
-            </p>
+            <div className="mt-16 flex max-w-2xl items-center gap-8 border-t border-white/15 pt-5 text-[0.65rem] uppercase tracking-[0.17em] text-muted-foreground md:absolute md:bottom-10 md:right-8 md:mt-0 md:border-t-0 md:pt-0">
+              <span className="flex items-center gap-2"><Radio className="h-3.5 w-3.5 text-primary" /> Live world</span>
+              <span className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 text-primary" /> Chicago, IL</span>
+              <span className="hidden sm:inline">Your story starts at street level</span>
+            </div>
           </motion.div>
+        </section>
 
-          <div className={`grid gap-8 justify-center ${owners.length === 1 ? "grid-cols-1 max-w-sm mx-auto" : owners.length === 2 ? "grid-cols-1 md:grid-cols-2 max-w-2xl mx-auto" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}`}>
-            {owners.map((owner, idx) => (
-              <motion.div
-                key={idx}
-                id={`owner-${idx}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.15 }}
-              >
-                <Card className="bg-white/[0.02] border-white/5 hover:border-primary/30 transition-all duration-300 overflow-hidden relative group h-full">
-                  <div className={`absolute inset-0 bg-gradient-to-b ${owner.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  <CardContent className="p-8 flex flex-col items-center text-center relative z-10">
-                    {/* Avatar */}
-                    <div className="relative mb-6">
-                      {owner.photo ? (
-                        <img
-                          src={owner.photo}
-                          alt={owner.name}
-                          className="h-24 w-24 rounded-full object-cover border-2 border-primary/40 shadow-[0_0_30px_rgba(74,130,214,0.25)]"
-                        />
-                      ) : (
-                        <div className={`h-24 w-24 rounded-full bg-gradient-to-br ${owner.color} border-2 border-primary/30 flex items-center justify-center text-2xl font-black text-white shadow-[0_0_30px_rgba(74,130,214,0.2)]`}>
-                          {owner.initials}
-                        </div>
-                      )}
-                      <div className="absolute -bottom-1 -right-1 h-7 w-7 rounded-full bg-primary flex items-center justify-center border-2 border-background">
-                        <Crown className="h-3.5 w-3.5 text-white" />
-                      </div>
-                    </div>
-
-                    {/* Info */}
-                    <h3 className="text-2xl font-bold mb-1 group-hover:text-primary transition-colors">{owner.name}</h3>
-                    <span className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">{owner.role}</span>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-6">{owner.bio}</p>
-
-                    {/* Socials */}
-                    <div className="flex items-center gap-2 flex-wrap justify-center">
-                      {owner.socials.discord && (
-                        <a href={owner.socials.discorddiscord} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-[#5865F2]/10 hover:border-[#5865F2]/40 hover:text-white transition-all">
-                          <SiDiscord className="h-3 w-3 text-[#5865F2]" />{owner.socials.discordLabel || "Discord"}
-                        </a>
-                      )}
-                      {owner.socials.instagram && (
-                        <a href={owner.socials.instagram} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-pink-500/10 hover:border-pink-500/40 hover:text-white transition-all">
-                          <SiInstagram className="h-3 w-3 text-pink-400" />Instagram
-                        </a>
-                      )}
-                      {owner.socials.twitch && (
-                        <a href={owner.socials.twitch} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-purple-500/10 hover:border-purple-500/40 hover:text-white transition-all">
-                          <SiTwitch className="h-3 w-3 text-purple-400" />Twitch
-                        </a>
-                      )}
-                      {owner.socials.kick && (
-                        <a href={owner.socials.kick} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-green-500/10 hover:border-green-500/40 hover:text-white transition-all">
-                          <SiKick className="h-3 w-3 text-green-400" />Kick
-                        </a>
-                      )}
-                      {owner.socials.tiktok && (
-                        <a href={owner.socials.tiktok} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-[#69C9D0]/10 hover:border-[#69C9D0]/40 hover:text-white transition-all">
-                          <SiTiktok className="h-3 w-3 text-[#69C9D0]" />TikTok
-                        </a>
-                      )}
-                      {owner.socials.twitter && (
-                        <a href={owner.socials.twitter} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-white/10 hover:border-white/30 hover:text-white transition-all">
-                          <SiX className="h-3 w-3 text-white/60" />X
-                        </a>
-                      )}
-                      {owner.socials.youtube && (
-                        <a href={owner.socials.youtube} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full px-3 py-1.5 hover:bg-red-500/10 hover:border-red-500/40 hover:text-white transition-all">
-                          <SiYoutube className="h-3 w-3 text-red-500" />YouTube
-                        </a>
-                      )}
-                      {!owner.socials.discord && !owner.socials.instagram && !owner.socials.twitch && !owner.socials.kick && !owner.socials.tiktok && !owner.socials.twitter && !owner.socials.youtube && (
-                        <span className="text-xs text-muted-foreground/40 italic">No socials added yet</span>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+        <section id="about" className="relative py-24 md:py-36">
+          <div className="container mx-auto grid max-w-7xl gap-14 px-5 md:grid-cols-[0.7fr_1.3fr] md:px-8">
+            <div>
+              <p className="section-label mb-5">01 / About the city</p>
+              <div className="mark-rule mb-7 w-32" />
+              <p className="display-type text-5xl font-semibold uppercase leading-[0.9] text-foreground/90 md:text-7xl">No scripts.<br /><span className="text-primary">Just stakes.</span></p>
+            </div>
+            <div className="max-w-2xl">
+              <h2 className="display-type text-4xl font-bold uppercase leading-none md:text-6xl">A city built for <span className="text-primary">story</span>.</h2>
+              <p className="mt-7 text-lg leading-relaxed text-muted-foreground md:text-xl">The Streets Chicago is a serious FiveM roleplay server for players who want more than a quick scene. Take a job. Build a crew. Earn a badge. Open a door that changes your whole neighborhood. The city gives you room to move — then remembers what you did.</p>
+              <div className="mt-10 grid grid-cols-2 gap-6 border-t border-white/10 pt-7 text-xs uppercase tracking-widest text-muted-foreground">
+                <div><span className="display-type block text-4xl font-bold text-primary">24/7</span><span>Stories in motion</span></div>
+                <div><span className="display-type block text-4xl font-bold text-primary">1</span><span>City to make yours</span></div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Footer */}
-      <footer className="border-t border-white/5 bg-background py-5">
-        <div className="container mx-auto px-6 flex items-center justify-between gap-6">
-
-          {/* Left — logo */}
-          <div className="flex items-center gap-3 opacity-50 shrink-0">
-            <img src={logo} alt="Logo" className="h-8 w-auto grayscale" />
-            <span className="font-bold tracking-tight hidden sm:block">WINDY CITY RP</span>
+        <section id="features" className="border-y border-white/10 bg-black/20 py-24 md:py-32">
+          <div className="container mx-auto max-w-7xl px-5 md:px-8">
+            <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+              <div><p className="section-label mb-4">02 / The framework</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Built for the<br /><span className="text-primary">long game.</span></h2></div>
+              <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Every system exists to create better scenes — not to get in the way of them.</p>
+            </div>
+            <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2">
+              {features.map((feature) => (
+                <motion.div key={feature.index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }} className="lift group bg-background p-7 md:p-10">
+                  <div className="mb-12 flex items-start justify-between"><feature.icon className="h-8 w-8 text-primary" /><span className="font-mono text-xs text-muted-foreground">{feature.index}</span></div>
+                  <h3 className="display-type text-3xl font-bold uppercase">{feature.title}</h3>
+                  <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
+                  <div className="mt-8 h-0.5 w-12 bg-primary transition-all duration-300 group-hover:w-24" />
+                </motion.div>
+              ))}
+            </div>
           </div>
+        </section>
 
-          {/* Center — owner avatars · copyright · guidelines */}
-          <div className="flex items-center gap-3 flex-wrap justify-center">
-            {owners.map((owner, idx) => (
-              <a
-                key={idx}
-                href={`#owner-${idx}`}
-                title={`${owner.name} — ${owner.role}`}
-                className="group shrink-0"
-              >
-                {owner.photo ? (
-                  <img
-                    src={owner.photo}
-                    alt={owner.name}
-                    className="h-8 w-8 rounded-full object-cover border border-white/15 group-hover:border-primary/60 group-hover:shadow-[0_0_12px_rgba(74,130,214,0.4)] transition-all duration-300"
-                  />
-                ) : (
-                  <div className={`h-8 w-8 rounded-full bg-gradient-to-br ${owner.color} border border-white/15 group-hover:border-primary/60 flex items-center justify-center text-xs font-black text-white group-hover:shadow-[0_0_12px_rgba(74,130,214,0.4)] transition-all duration-300`}>
-                    {owner.initials}
-                  </div>
-                )}
-              </a>
-            ))}
-            <span className="text-white/20 hidden sm:block">·</span>
-            <span className="text-muted-foreground/40 text-xs whitespace-nowrap">&copy; {new Date().getFullYear()} Windy City Roleplay. All rights reserved.</span>
-            <span className="text-white/20 hidden sm:block">·</span>
-            <a
-              href="https://windycity.community.forum/threads/server-guidelines.1/"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="link-guidelines"
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/40 hover:text-white transition-all text-xs font-medium text-muted-foreground whitespace-nowrap shrink-0"
-            >
-              <Users className="h-3 w-3" />
-              Server Guidelines
-            </a>
+        <section id="trailer" className="py-24 md:py-36">
+          <div className="container mx-auto max-w-6xl px-5 md:px-8">
+            <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="section-label mb-4">03 / First look</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">See the city<br /><span className="text-primary">after dark.</span></h2></div><p className="max-w-sm text-sm leading-relaxed text-muted-foreground">The trailer is being cut. Until then, the block is waiting.</p></div>
+            <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative aspect-video overflow-hidden border border-white/15 bg-black/30">
+              {siteConfig.trailerUrl ? <iframe src={siteConfig.trailerUrl} title="The Streets Chicago official trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="absolute inset-0 h-full w-full" data-testid="video-trailer" /> : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-[linear-gradient(135deg,hsl(28_12%_16%),hsl(24_17%_7%))] p-6 text-center">
+                  <div className="mb-5 flex h-16 w-16 items-center justify-center border border-primary/50 text-primary"><Film className="h-7 w-7" /></div>
+                  <p className="section-label mb-3">Trailer / in production</p>
+                  <h3 className="display-type text-4xl font-bold uppercase">Coming soon.</h3>
+                  <p className="mt-3 max-w-md text-sm text-muted-foreground">The next chapter is being shot. Check back when the lights come on.</p>
+                </div>
+              )}
+              <div className="pointer-events-none absolute left-5 top-5 font-mono text-[0.6rem] uppercase tracking-widest text-primary">TSC / 001</div>
+            </motion.div>
           </div>
+        </section>
 
-          {/* Right — social icons */}
-          <div className="flex items-center gap-1 shrink-0">
-            {socialLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-white transition-colors p-2"
-                aria-label={link.name}
-              >
-                <link.icon className={`h-4 w-4 ${link.color}`} />
-              </a>
-            ))}
+        <section id="community" className="border-y border-white/10 bg-[hsl(28_12%_10%)] py-24 md:py-32">
+          <div className="container mx-auto max-w-7xl px-5 md:px-8">
+            <div className="mb-14 max-w-2xl"><p className="section-label mb-4">04 / Get connected</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Find your<br /><span className="text-primary">entry point.</span></h2><p className="mt-6 text-muted-foreground">The city is already talking. Pull up, read the room, and find where your story begins.</p></div>
+            <div className="grid gap-4 md:grid-cols-3">
+              {siteConfig.communityLinks.map((link, index) => {
+                const Icon = communityIcon[link.kind];
+                return <motion.div key={link.name} initial={{ opacity: 0, x: -15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}><ExternalAnchor href={link.url} className="lift group flex h-full items-center gap-5 border border-white/10 bg-background p-5 hover:border-primary/60 hover:bg-primary/[0.04]" ariaLabel={`Open ${link.name}`}>
+                  <img src={link.avatar} alt={`${link.name} avatar`} className="h-14 w-14 rounded-full object-cover grayscale transition-all group-hover:grayscale-0" />
+                  <div className="min-w-0 flex-1"><div className="mb-1 flex items-center gap-2"><h3 className="font-bold">{link.name}</h3><Icon className="h-3.5 w-3.5 text-primary" /></div><p className="text-sm text-muted-foreground">{link.description}</p></div><ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
+                </ExternalAnchor></motion.div>;
+              })}
+            </div>
           </div>
+        </section>
 
+        <section id="factions" className="py-24 md:py-32">
+          <div className="container mx-auto max-w-7xl px-5 md:px-8">
+            <div className="mb-14 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="section-label mb-4">05 / Pick a side</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Every block<br /><span className="text-primary">has a code.</span></h2></div><p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Law, medicine, business, or the life in between. Your circle is your leverage.</p></div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {siteConfig.factionLinks.map((link, index) => <motion.div key={link.name} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }}><ExternalAnchor href={link.url} className="lift group relative flex min-h-52 flex-col justify-end overflow-hidden border border-white/10 bg-background p-6 hover:border-primary/60" ariaLabel={`Open ${link.name} community`}><img src={link.avatar} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale transition-all duration-500 group-hover:scale-105 group-hover:opacity-35 group-hover:grayscale-0" /><div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" /><div className="relative z-10"><p className="mb-3 font-mono text-[0.62rem] uppercase tracking-widest text-primary">District / 0{index + 1}</p><h3 className="display-type text-3xl font-bold uppercase">{link.name}</h3><p className="mt-1 text-sm text-muted-foreground">{link.description}</p></div><ArrowUpRight className="absolute right-5 top-5 h-4 w-4 text-primary opacity-60 transition-opacity group-hover:opacity-100" /></ExternalAnchor></motion.div>)}
+            </div>
+          </div>
+        </section>
+
+        <section id="team" className="border-t border-white/10 bg-black/20 py-24 md:py-32">
+          <div className="container mx-auto max-w-7xl px-5 md:px-8">
+            <div className="mb-14"><p className="section-label mb-4">06 / The people behind it</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Built by<br /><span className="text-primary">people who care.</span></h2></div>
+            <div className="grid gap-6 lg:grid-cols-3">
+              {siteConfig.owners.map((owner, index) => <motion.div key={owner.name} id={`owner-${index}`} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="group border border-white/10 bg-background p-7"><div className="mb-7 flex items-center justify-between"><img src={owner.photo} alt={`${owner.name}, ${owner.role}`} className="h-20 w-20 rounded-full border border-primary/50 object-cover grayscale transition-all group-hover:grayscale-0" /><Crown className="h-5 w-5 text-primary" /></div><p className="section-label mb-2">{owner.role}</p><h3 className="display-type text-4xl font-bold uppercase">{owner.name}</h3><p className="mt-4 min-h-20 text-sm leading-relaxed text-muted-foreground">{owner.bio}</p><div className="mt-7 flex flex-wrap gap-2 border-t border-white/10 pt-5">{owner.socials.discord && <ExternalAnchor href={owner.socials.discord} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Discord`}><SiDiscord className="h-3 w-3" />{owner.socials.discordLabel || "Discord"}</ExternalAnchor>}{owner.socials.instagram && <ExternalAnchor href={owner.socials.instagram} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Instagram`}><SiInstagram className="h-3 w-3" />Instagram</ExternalAnchor>}{owner.socials.twitch && <ExternalAnchor href={owner.socials.twitch} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Twitch`}><SiTwitch className="h-3 w-3" />Twitch</ExternalAnchor>}{owner.socials.kick && <ExternalAnchor href={owner.socials.kick} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Kick`}><SiKick className="h-3 w-3" />Kick</ExternalAnchor>}</div></motion.div>)}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-white/10 bg-background py-8">
+        <div className="container mx-auto flex flex-col justify-between gap-6 px-5 md:flex-row md:items-center md:px-8">
+          <a href="/" className="flex items-center gap-3 opacity-75" data-testid="link-footer-brand"><img src={siteConfig.brand.logo} alt="The Streets Chicago logo" className="h-8 w-8 object-contain grayscale" /><span className="display-type text-xl font-bold tracking-wide">{siteConfig.brand.shortName} <span className="text-primary">/ {siteConfig.brand.descriptor}</span></span></a>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground"><span>© {new Date().getFullYear()} {siteConfig.brand.name}</span><span className="hidden text-primary/50 sm:inline">/</span><ExternalAnchor href={siteConfig.links.guidelines} className="inline-flex items-center gap-1.5 transition-colors hover:text-primary" ariaLabel="Read server guidelines">Server guidelines <ExternalLink className="h-3 w-3" /></ExternalAnchor></div>
+          <ExternalAnchor href={siteConfig.links.discord} className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary transition-colors hover:text-foreground" ariaLabel="Join The Streets Chicago Discord">Join the city <ArrowUpRight className="h-4 w-4" /></ExternalAnchor>
         </div>
       </footer>
     </div>

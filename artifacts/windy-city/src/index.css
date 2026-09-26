@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -52,58 +52,45 @@
 }
 
 :root, .dark {
-  /* Deep navy — matches the logo's outer ring and badge background */
-  --background: 222 47% 5%;
-  --foreground: 210 30% 96%;
-
-  --border: 220 35% 13%;
-  --input: 220 35% 13%;
-  --ring: 213 68% 52%;
-
-  --card: 222 45% 7%;
-  --card-foreground: 210 30% 96%;
-  --card-border: 220 35% 13%;
-
-  --popover: 222 45% 7%;
-  --popover-foreground: 210 30% 96%;
-  --popover-border: 220 35% 13%;
-
-  /* Steel blue — matches the skyline highlights and badge tones in the logo */
-  --primary: 213 68% 52%;
-  --primary-foreground: 222 47% 5%;
-
-  --secondary: 220 35% 13%;
-  --secondary-foreground: 210 30% 96%;
-
-  --muted: 220 35% 13%;
-  --muted-foreground: 215 18% 58%;
-
-  --accent: 213 68% 52%;
-  --accent-foreground: 210 30% 96%;
-
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 210 30% 96%;
-
-  --app-font-sans: 'Outfit', sans-serif;
+  /* The Streets Chicago palette: asphalt, sodium light, and a hit of warning amber. */
+  --background: 24 17% 7%;
+  --foreground: 40 24% 92%;
+  --border: 28 12% 18%;
+  --input: 28 12% 18%;
+  --ring: 36 97% 55%;
+  --card: 25 15% 10%;
+  --card-foreground: 40 24% 92%;
+  --card-border: 28 12% 18%;
+  --popover: 25 15% 10%;
+  --popover-foreground: 40 24% 92%;
+  --popover-border: 28 12% 18%;
+  --primary: 36 97% 55%;
+  --primary-foreground: 24 17% 7%;
+  --secondary: 28 12% 16%;
+  --secondary-foreground: 40 24% 92%;
+  --muted: 28 12% 16%;
+  --muted-foreground: 34 10% 61%;
+  --accent: 7 64% 43%;
+  --accent-foreground: 40 24% 92%;
+  --destructive: 7 64% 43%;
+  --destructive-foreground: 40 24% 92%;
+  --app-font-sans: 'DM Sans', sans-serif;
   --app-font-serif: Georgia, serif;
-  --app-font-mono: Menlo, monospace;
-
-  --radius: 0.5rem;
-
-  --chart-1: 213 68% 52%;
-  --chart-2: 210 30% 96%;
-  --chart-3: 220 35% 13%;
-  --chart-4: 222 45% 7%;
-  --chart-5: 0 84% 60%;
-
-  --sidebar: 222 47% 5%;
-  --sidebar-foreground: 210 30% 96%;
-  --sidebar-border: 220 35% 13%;
-  --sidebar-primary: 213 68% 52%;
-  --sidebar-primary-foreground: 222 47% 5%;
-  --sidebar-accent: 220 35% 13%;
-  --sidebar-accent-foreground: 210 30% 96%;
-  --sidebar-ring: 213 68% 52%;
+  --app-font-mono: 'Space Mono', monospace;
+  --radius: 0.35rem;
+  --chart-1: 36 97% 55%;
+  --chart-2: 7 64% 43%;
+  --chart-3: 40 24% 92%;
+  --chart-4: 28 12% 18%;
+  --chart-5: 34 10% 61%;
+  --sidebar: 24 17% 7%;
+  --sidebar-foreground: 40 24% 92%;
+  --sidebar-border: 28 12% 18%;
+  --sidebar-primary: 36 97% 55%;
+  --sidebar-primary-foreground: 24 17% 7%;
+  --sidebar-accent: 28 12% 16%;
+  --sidebar-accent-foreground: 40 24% 92%;
+  --sidebar-ring: 36 97% 55%;
 }
 
 @layer base {
@@ -115,5 +102,58 @@
   }
   html {
     scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .street-shell {
+    background:
+      radial-gradient(circle at 78% 5%, hsl(36 97% 55% / 0.08), transparent 28rem),
+      radial-gradient(circle at 4% 42%, hsl(7 64% 43% / 0.06), transparent 26rem),
+      hsl(var(--background));
+  }
+
+  .site-noise::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 60;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
+  }
+
+  .display-type {
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: -0.035em;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: hsl(var(--primary));
+  }
+
+  .hero-grid {
+    background-image: linear-gradient(hsl(40 24% 92% / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(40 24% 92% / 0.045) 1px, transparent 1px);
+    background-size: 54px 54px;
+    mask-image: linear-gradient(to bottom, black, transparent 75%);
+  }
+
+  .mark-rule {
+    height: 1px;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary) / 0.16), transparent);
+  }
+
+  .lift {
+    transition: transform 240ms ease, border-color 240ms ease, background-color 240ms ease, color 240ms ease;
+  }
+
+  .lift:hover {
+    transform: translateY(-4px);
   }
 }
