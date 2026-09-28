@@ -94,6 +94,7 @@ export default function Home() {
             <video autoPlay muted loop playsInline className="h-full w-full object-cover opacity-65" poster={siteConfig.brand.logo}>
               <source src={siteConfig.brand.heroVideo} type="video/mp4" />
             </video>
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-[62%] bg-[linear-gradient(180deg,rgba(255,135,20,0.62)_0%,rgba(231,83,13,0.3)_42%,transparent_100%)] mix-blend-color" />
             <div className="absolute inset-0 bg-[linear-gradient(90deg,hsl(24_17%_7%/.98)_0%,hsl(24_17%_7%/.8)_38%,hsl(24_17%_7%/.25)_100%)]" />
             <div className="absolute inset-0 bg-[linear-gradient(0deg,hsl(24_17%_7%)_0%,transparent_30%,hsl(24_17%_7%/.45)_100%)]" />
             <div className="hero-grid absolute inset-0 opacity-60" />
