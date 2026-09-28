@@ -33,13 +33,13 @@ export const siteConfig = {
     { name: "Website / Forums", url: "https://thestreetschicago.com/", avatar: logo, kind: "forums", description: "Read the code before you move" },
   ],
   factionLinks: [
-    { name: "Faction Community", url: "https://discord.gg/7apPvyuF4u", avatar: factionCommunityAvatar, description: "Find your people" },
-    { name: "Real Estate", url: "https://discord.gg/sF4eGVnfD7", avatar: realEstateAvatar, description: "Build your place in the city" },
-    { name: "Family Legacies", url: "https://discord.gg/kru8k22DHd", avatar: familyLegaciesAvatar, description: "Make a name that lasts" },
-    { name: "School", url: "https://discord.gg/Cr2ffMDF5G", avatar: schoolAvatar, description: "Learn, connect, and find your path" },
-    { name: "Department of Justice", url: "https://discord.gg/6qu4rJCdwQ", avatar: departmentOfJusticeAvatar, description: "Courts, law, and justice" },
-    { name: "Medical Services", url: "https://discord.gg/fAA9nGgJAA", avatar: medicalServicesAvatar, description: "Care for the city" },
-    { name: "Civilian Roleplay", url: "https://discord.gg/DdbwcrHJ9q", avatar: civilianRoleplayAvatar, description: "Make a life outside the headlines" },
+    { name: "The Streets : Factions", url: "https://discord.gg/7apPvyuF4u", avatar: factionCommunityAvatar, description: "Find your people" },
+    { name: "The Streets Real Estate", url: "https://discord.gg/sF4eGVnfD7", avatar: realEstateAvatar, description: "Build your place in the city" },
+    { name: "The Streets : Family Legacies", url: "https://discord.gg/kru8k22DHd", avatar: familyLegaciesAvatar, description: "Make a name that lasts" },
+    { name: "TSRP: Hyde Park Academy High School", url: "https://discord.gg/Cr2ffMDF5G", avatar: schoolAvatar, description: "Learn, connect, and find your path" },
+    { name: "The Streets Department Of Justice", url: "https://discord.gg/6qu4rJCdwQ", avatar: departmentOfJusticeAvatar, description: "Courts, law, and justice" },
+    { name: "TSRP: NorthWest Medical Center", url: "https://discord.gg/fAA9nGgJAA", avatar: medicalServicesAvatar, description: "Care for the city" },
+    { name: "The Streets: Civilian Roleplay", url: "https://discord.gg/DdbwcrHJ9q", avatar: civilianRoleplayAvatar, description: "Make a life outside the headlines" },
   ],
   owners: [
     {
