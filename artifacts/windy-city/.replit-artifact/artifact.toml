@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/"
-title = "Windy City Roleplay"
+title = "The Streets Chicago"
 version = "1.0.0"
 id = "artifacts/windy-city"
 router = "path"

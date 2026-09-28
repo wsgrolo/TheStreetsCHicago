@@ -1,4 +1,4 @@
-import logo from "@/assets/windycity-logo.png";
+import logo from "@/assets/thestreets-chicago-logo.webp";
 import heroVideo from "@/assets/hero-bg.mp4";
 import discordAvatar from "@/assets/social/discord.png";
 import tebexAvatar from "@/assets/social/tebex.png";
@@ -26,16 +26,15 @@ export const siteConfig = {
     heroVideo,
   },
   links: {
-    discord: "https://discord.com/invite/windycityrp",
+    discord: "https://discord.gg/thestreetsrp",
     store: "https://windycityrp.tebex.io/",
-    guidelines: "https://windycity.community.forum/threads/server-guidelines.1/",
+    guidelines: "https://thestreetschicago.com/",
   },
-  // Leave blank until the replacement trailer URL is ready. No broken embed is rendered.
-  trailerUrl: "",
+  trailerUrl: "https://www.youtube.com/embed/XwZGzwCXJbU?rel=0&modestbranding=1",
   communityLinks: [
-    { name: "Main City", url: "https://discord.com/invite/windycityrp", avatar: discordAvatar, kind: "discord", description: "Get in the room where it starts" },
+    { name: "Main City", url: "https://discord.gg/thestreetsrp", avatar: discordAvatar, kind: "discord", description: "Get in the room where it starts" },
     { name: "Tebex Store", url: "https://windycityrp.tebex.io/", avatar: tebexAvatar, kind: "store", description: "Back the city you play in" },
-    { name: "Forums", url: "https://windycity.community.forum/threads/server-guidelines.1/", avatar: forumsAvatar, kind: "forums", description: "Read the code before you move" },
+    { name: "Website / Forums", url: "https://thestreetschicago.com/", avatar: forumsAvatar, kind: "forums", description: "Read the code before you move" },
   ],
   factionLinks: [
     { name: "Faction Community", url: "https://discord.com/invite/R2FnTbDrry", avatar: factionAvatar, description: "Find your people" },
