@@ -108,9 +108,6 @@ export default function Home() {
               <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.12 }} className="display-type max-w-4xl text-[4.4rem] font-bold uppercase leading-[0.82] text-foreground sm:text-[6.6rem] md:text-[9.2rem]">
                 Make your<br /><span className="text-primary">name</span> here.
               </motion.h1>
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.35 }} className="mt-8 max-w-xl border-l-2 border-primary pl-5 text-base leading-relaxed text-foreground/70 md:text-lg">
-                The streets remember everything. Step into a living Chicago where loyalty has a cost, ambition has a face, and your next move changes the block.
-              </motion.p>
               <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.52 }} className="mt-9 flex flex-col gap-4 sm:flex-row">
                 <Button size="lg" asChild className="h-14 rounded-sm bg-primary px-8 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-[5px_5px_0_hsl(var(--accent))] hover:bg-primary/90">
                   <ExternalAnchor href={siteConfig.links.discord} ariaLabel="Join The Streets Chicago Discord">Join the Discord <SiDiscord className="ml-3 h-5 w-5" /></ExternalAnchor>
@@ -137,7 +134,6 @@ export default function Home() {
             </div>
             <div className="max-w-2xl">
               <h2 className="display-type text-4xl font-bold uppercase leading-none md:text-6xl">A city built for <span className="text-primary">story</span>.</h2>
-              <p className="mt-7 text-lg leading-relaxed text-muted-foreground md:text-xl">The Streets Chicago is a serious FiveM roleplay server for players who want more than a quick scene. Take a job. Build a crew. Earn a badge. Open a door that changes your whole neighborhood. The city gives you room to move — then remembers what you did.</p>
               <div className="mt-10 grid grid-cols-2 gap-6 border-t border-white/10 pt-7 text-xs uppercase tracking-widest text-muted-foreground">
                 <div><span className="display-type block text-4xl font-bold text-primary">24/7</span><span>Stories in motion</span></div>
                 <div><span className="display-type block text-4xl font-bold text-primary">1</span><span>City to make yours</span></div>
@@ -150,7 +146,6 @@ export default function Home() {
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
             <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
                <div><p className="section-label mb-4">The framework</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Built for the<br /><span className="text-primary">long game.</span></h2></div>
-              <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Every system exists to create better scenes — not to get in the way of them.</p>
             </div>
             <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2">
               {features.map((feature) => (
@@ -167,7 +162,7 @@ export default function Home() {
 
         <section id="trailer" className="py-24 md:py-36">
           <div className="container mx-auto max-w-6xl px-5 md:px-8">
-             <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="section-label mb-4">First look</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">See the city<br /><span className="text-primary">after dark.</span></h2></div><p className="max-w-sm text-sm leading-relaxed text-muted-foreground">The trailer is being cut. Until then, the block is waiting.</p></div>
+             <div className="mb-10"><div><p className="section-label mb-4">First look</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">See the city<br /><span className="text-primary">after dark.</span></h2></div></div>
             <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative aspect-video overflow-hidden border border-white/15 bg-black/30">
               {siteConfig.trailerUrl ? <iframe src={siteConfig.trailerUrl} title="The Streets Chicago official trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="absolute inset-0 h-full w-full" data-testid="video-trailer" /> : (
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-[linear-gradient(135deg,hsl(28_12%_16%),hsl(24_17%_7%))] p-6 text-center">
@@ -183,7 +178,7 @@ export default function Home() {
 
         <section id="community" className="border-y border-white/10 bg-[hsl(28_12%_10%)] py-24 md:py-32">
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
-             <div className="mb-14 max-w-2xl"><p className="section-label mb-4">Get connected</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Find your<br /><span className="text-primary">entry point.</span></h2><p className="mt-6 text-muted-foreground">The city is already talking. Pull up, read the room, and find where your story begins.</p></div>
+             <div className="mb-14 max-w-2xl"><p className="section-label mb-4">Get connected</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Find your<br /><span className="text-primary">entry point.</span></h2></div>
             <div className="grid gap-4 md:grid-cols-3">
               {siteConfig.communityLinks.map((link, index) => {
                 const Icon = communityIcon[link.kind];
@@ -198,7 +193,7 @@ export default function Home() {
 
         <section id="factions" className="py-24 md:py-32">
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
-             <div className="mb-14 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="section-label mb-4">Pick a side</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Every block<br /><span className="text-primary">has a code.</span></h2></div><p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Law, medicine, business, or the life in between. Your circle is your leverage.</p></div>
+             <div className="mb-14"><div><p className="section-label mb-4">Pick a side</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Every block<br /><span className="text-primary">has a code.</span></h2></div></div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                {siteConfig.factionLinks.map((link) => <motion.div key={link.name} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}><ExternalAnchor href={link.url} className="lift group relative flex min-h-52 flex-col justify-end overflow-hidden border border-white/10 bg-background p-6 hover:border-primary/60" ariaLabel={`Open ${link.name} community`}><img src={link.avatar} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale transition-all duration-500 group-hover:scale-105 group-hover:opacity-35 group-hover:grayscale-0" /><div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" /><div className="relative z-10"><h3 className="display-type text-3xl font-bold uppercase">{link.name}</h3><p className="mt-1 text-sm text-muted-foreground">{link.description}</p></div><ArrowUpRight className="absolute right-5 top-5 h-4 w-4 text-primary opacity-60 transition-opacity group-hover:opacity-100" /></ExternalAnchor></motion.div>)}
             </div>
