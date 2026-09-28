@@ -12,10 +12,10 @@ const communityIcon = {
 } as const;
 
 const features = [
-  { icon: Shield, index: "01", title: "Roleplay with weight", description: "Rules protect the story, not the spectacle. Come ready to make choices that carry." },
-  { icon: MapPin, index: "02", title: "A city with a pulse", description: "From the blocks to the lakefront, every neighborhood has its own rhythm, pressure, and opportunity." },
-  { icon: Users, index: "03", title: "People, not player counts", description: "Build a name with crews, departments, businesses, and the strangers you meet after dark." },
-  { icon: Server, index: "04", title: "Made for the long run", description: "A tuned FiveM framework, active staff, and a city designed to keep your story moving." },
+  { icon: Shield, title: "Roleplay with weight", description: "Rules protect the story, not the spectacle. Come ready to make choices that carry." },
+  { icon: MapPin, title: "A city with a pulse", description: "From the blocks to the lakefront, every neighborhood has its own rhythm, pressure, and opportunity." },
+  { icon: Users, title: "People, not player counts", description: "Build a name with crews, departments, businesses, and the strangers you meet after dark." },
+  { icon: Server, title: "Made for the long run", description: "A tuned FiveM framework, active staff, and a city designed to keep your story moving." },
 ];
 
 const navLinks = [
@@ -131,7 +131,7 @@ export default function Home() {
         <section id="about" className="relative py-24 md:py-36">
           <div className="container mx-auto grid max-w-7xl gap-14 px-5 md:grid-cols-[0.7fr_1.3fr] md:px-8">
             <div>
-              <p className="section-label mb-5">01 / About the city</p>
+               <p className="section-label mb-5">About the city</p>
               <div className="mark-rule mb-7 w-32" />
               <p className="display-type text-5xl font-semibold uppercase leading-[0.9] text-foreground/90 md:text-7xl">No scripts.<br /><span className="text-primary">Just stakes.</span></p>
             </div>
@@ -149,13 +149,13 @@ export default function Home() {
         <section id="features" className="border-y border-white/10 bg-black/20 py-24 md:py-32">
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
             <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <div><p className="section-label mb-4">02 / The framework</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Built for the<br /><span className="text-primary">long game.</span></h2></div>
+               <div><p className="section-label mb-4">The framework</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Built for the<br /><span className="text-primary">long game.</span></h2></div>
               <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Every system exists to create better scenes — not to get in the way of them.</p>
             </div>
             <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2">
               {features.map((feature) => (
-                <motion.div key={feature.index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }} className="lift group bg-background p-7 md:p-10">
-                  <div className="mb-12 flex items-start justify-between"><feature.icon className="h-8 w-8 text-primary" /><span className="font-mono text-xs text-muted-foreground">{feature.index}</span></div>
+                 <motion.div key={feature.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }} className="lift group bg-background p-7 md:p-10">
+                   <div className="mb-12 flex items-start justify-between"><feature.icon className="h-8 w-8 text-primary" /></div>
                   <h3 className="display-type text-3xl font-bold uppercase">{feature.title}</h3>
                   <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
                   <div className="mt-8 h-0.5 w-12 bg-primary transition-all duration-300 group-hover:w-24" />
@@ -167,7 +167,7 @@ export default function Home() {
 
         <section id="trailer" className="py-24 md:py-36">
           <div className="container mx-auto max-w-6xl px-5 md:px-8">
-            <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="section-label mb-4">03 / First look</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">See the city<br /><span className="text-primary">after dark.</span></h2></div><p className="max-w-sm text-sm leading-relaxed text-muted-foreground">The trailer is being cut. Until then, the block is waiting.</p></div>
+             <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="section-label mb-4">First look</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">See the city<br /><span className="text-primary">after dark.</span></h2></div><p className="max-w-sm text-sm leading-relaxed text-muted-foreground">The trailer is being cut. Until then, the block is waiting.</p></div>
             <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative aspect-video overflow-hidden border border-white/15 bg-black/30">
               {siteConfig.trailerUrl ? <iframe src={siteConfig.trailerUrl} title="The Streets Chicago official trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="absolute inset-0 h-full w-full" data-testid="video-trailer" /> : (
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-[linear-gradient(135deg,hsl(28_12%_16%),hsl(24_17%_7%))] p-6 text-center">
@@ -177,14 +177,13 @@ export default function Home() {
                   <p className="mt-3 max-w-md text-sm text-muted-foreground">The next chapter is being shot. Check back when the lights come on.</p>
                 </div>
               )}
-              <div className="pointer-events-none absolute left-5 top-5 font-mono text-[0.6rem] uppercase tracking-widest text-primary">TSC / 001</div>
             </motion.div>
           </div>
         </section>
 
         <section id="community" className="border-y border-white/10 bg-[hsl(28_12%_10%)] py-24 md:py-32">
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
-            <div className="mb-14 max-w-2xl"><p className="section-label mb-4">04 / Get connected</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Find your<br /><span className="text-primary">entry point.</span></h2><p className="mt-6 text-muted-foreground">The city is already talking. Pull up, read the room, and find where your story begins.</p></div>
+             <div className="mb-14 max-w-2xl"><p className="section-label mb-4">Get connected</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Find your<br /><span className="text-primary">entry point.</span></h2><p className="mt-6 text-muted-foreground">The city is already talking. Pull up, read the room, and find where your story begins.</p></div>
             <div className="grid gap-4 md:grid-cols-3">
               {siteConfig.communityLinks.map((link, index) => {
                 const Icon = communityIcon[link.kind];
@@ -199,16 +198,16 @@ export default function Home() {
 
         <section id="factions" className="py-24 md:py-32">
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
-            <div className="mb-14 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="section-label mb-4">05 / Pick a side</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Every block<br /><span className="text-primary">has a code.</span></h2></div><p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Law, medicine, business, or the life in between. Your circle is your leverage.</p></div>
+             <div className="mb-14 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="section-label mb-4">Pick a side</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Every block<br /><span className="text-primary">has a code.</span></h2></div><p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Law, medicine, business, or the life in between. Your circle is your leverage.</p></div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {siteConfig.factionLinks.map((link, index) => <motion.div key={link.name} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }}><ExternalAnchor href={link.url} className="lift group relative flex min-h-52 flex-col justify-end overflow-hidden border border-white/10 bg-background p-6 hover:border-primary/60" ariaLabel={`Open ${link.name} community`}><img src={link.avatar} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale transition-all duration-500 group-hover:scale-105 group-hover:opacity-35 group-hover:grayscale-0" /><div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" /><div className="relative z-10"><p className="mb-3 font-mono text-[0.62rem] uppercase tracking-widest text-primary">District / 0{index + 1}</p><h3 className="display-type text-3xl font-bold uppercase">{link.name}</h3><p className="mt-1 text-sm text-muted-foreground">{link.description}</p></div><ArrowUpRight className="absolute right-5 top-5 h-4 w-4 text-primary opacity-60 transition-opacity group-hover:opacity-100" /></ExternalAnchor></motion.div>)}
+               {siteConfig.factionLinks.map((link) => <motion.div key={link.name} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}><ExternalAnchor href={link.url} className="lift group relative flex min-h-52 flex-col justify-end overflow-hidden border border-white/10 bg-background p-6 hover:border-primary/60" ariaLabel={`Open ${link.name} community`}><img src={link.avatar} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale transition-all duration-500 group-hover:scale-105 group-hover:opacity-35 group-hover:grayscale-0" /><div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" /><div className="relative z-10"><h3 className="display-type text-3xl font-bold uppercase">{link.name}</h3><p className="mt-1 text-sm text-muted-foreground">{link.description}</p></div><ArrowUpRight className="absolute right-5 top-5 h-4 w-4 text-primary opacity-60 transition-opacity group-hover:opacity-100" /></ExternalAnchor></motion.div>)}
             </div>
           </div>
         </section>
 
         <section id="team" className="border-t border-white/10 bg-black/20 py-24 md:py-32">
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
-            <div className="mb-14"><p className="section-label mb-4">06 / The people behind it</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Built by<br /><span className="text-primary">people who care.</span></h2></div>
+            <div className="mb-14"><p className="section-label mb-4">The people behind it</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Built by<br /><span className="text-primary">people who care.</span></h2></div>
             <div className="grid gap-6 lg:grid-cols-3">
               {siteConfig.owners.map((owner, index) => <motion.div key={owner.name} id={`owner-${index}`} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="group border border-white/10 bg-background p-7"><div className="mb-7 flex items-center justify-between"><img src={owner.photo} alt={`${owner.name}, ${owner.role}`} className="h-20 w-20 rounded-full border border-primary/50 object-cover grayscale transition-all group-hover:grayscale-0" /><Crown className="h-5 w-5 text-primary" /></div><p className="section-label mb-2">{owner.role}</p><h3 className="display-type text-4xl font-bold uppercase">{owner.name}</h3><p className="mt-4 min-h-20 text-sm leading-relaxed text-muted-foreground">{owner.bio}</p><div className="mt-7 flex flex-wrap gap-2 border-t border-white/10 pt-5">{owner.socials.discord && <ExternalAnchor href={owner.socials.discord} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Discord`}><SiDiscord className="h-3 w-3" />{owner.socials.discordLabel || "Discord"}</ExternalAnchor>}{owner.socials.instagram && <ExternalAnchor href={owner.socials.instagram} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Instagram`}><SiInstagram className="h-3 w-3" />Instagram</ExternalAnchor>}{owner.socials.twitch && <ExternalAnchor href={owner.socials.twitch} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Twitch`}><SiTwitch className="h-3 w-3" />Twitch</ExternalAnchor>}{owner.socials.kick && <ExternalAnchor href={owner.socials.kick} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Kick`}><SiKick className="h-3 w-3" />Kick</ExternalAnchor>}</div></motion.div>)}
             </div>

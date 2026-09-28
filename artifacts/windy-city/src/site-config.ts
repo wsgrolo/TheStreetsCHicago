@@ -37,11 +37,13 @@ export const siteConfig = {
     { name: "Website / Forums", url: "https://thestreetschicago.com/", avatar: forumsAvatar, kind: "forums", description: "Read the code before you move" },
   ],
   factionLinks: [
-    { name: "Faction Community", url: "https://discord.com/invite/R2FnTbDrry", avatar: factionAvatar, description: "Find your people" },
-    { name: "Chicago Police Dept.", url: "https://discord.com/invite/eG6XNQqxYZ", avatar: cpdAvatar, description: "Law enforcement" },
-    { name: "Blackstone Medical Center", url: "https://discord.com/invite/UUKQPy3ua3", avatar: bmcAvatar, description: "Medical services" },
-    { name: "The Judiciary", url: "https://discord.com/invite/vedbKgMM8d", avatar: judiciaryAvatar, description: "Courts and justice" },
-    { name: "Civilian Roleplay", url: "https://discord.com/invite/E3vRam4g4m", avatar: civilianAvatar, description: "Make a life outside the headlines" },
+    { name: "Faction Community", url: "https://discord.gg/7apPvyuF4u", avatar: factionAvatar, description: "Find your people" },
+    { name: "Real Estate", url: "https://discord.gg/sF4eGVnfD7", avatar: cpdAvatar, description: "Build your place in the city" },
+    { name: "Family Legacies", url: "https://discord.gg/kru8k22DHd", avatar: civilianAvatar, description: "Make a name that lasts" },
+    { name: "School", url: "https://discord.gg/Cr2ffMDF5G", avatar: judiciaryAvatar, description: "Learn, connect, and find your path" },
+    { name: "Department of Justice", url: "https://discord.gg/6qu4rJCdwQ", avatar: judiciaryAvatar, description: "Courts, law, and justice" },
+    { name: "Medical Services", url: "https://discord.gg/fAA9nGgJAA", avatar: bmcAvatar, description: "Care for the city" },
+    { name: "Civilian Roleplay", url: "https://discord.gg/DdbwcrHJ9q", avatar: civilianAvatar, description: "Make a life outside the headlines" },
   ],
   owners: [
     {
