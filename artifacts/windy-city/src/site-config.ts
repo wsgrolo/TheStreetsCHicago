@@ -1,16 +1,12 @@
 import logo from "@/assets/thestreets-chicago-logo.webp";
 import heroVideo from "@/assets/hero-bg.mp4";
-import discordAvatar from "@/assets/social/discord.png";
-import tebexAvatar from "@/assets/social/tebex.png";
-import forumsAvatar from "@/assets/social/forums.png";
-import factionAvatar from "@/assets/social/faction.png";
-import cpdAvatar from "@/assets/social/cpd.png";
-import bmcAvatar from "@/assets/social/bmc.png";
-import judiciaryAvatar from "@/assets/social/judiciary.png";
-import civilianAvatar from "@/assets/social/civilian.png";
-import owner1Avatar from "@/assets/social/owner1.png";
-import owner2Avatar from "@/assets/social/owner2.png";
-import owner3Avatar from "@/assets/social/owner3.png";
+import factionCommunityAvatar from "@/assets/social/factions/faction-community.png";
+import realEstateAvatar from "@/assets/social/factions/real-estate.png";
+import familyLegaciesAvatar from "@/assets/social/factions/family-legacies.png";
+import schoolAvatar from "@/assets/social/factions/school.png";
+import departmentOfJusticeAvatar from "@/assets/social/factions/department-of-justice.png";
+import medicalServicesAvatar from "@/assets/social/factions/medical-services.png";
+import civilianRoleplayAvatar from "@/assets/social/factions/civilian-roleplay.png";
 
 /**
  * REPLACEMENT PANEL
@@ -32,25 +28,24 @@ export const siteConfig = {
   },
   trailerUrl: "https://www.youtube.com/embed/XwZGzwCXJbU?rel=0&modestbranding=1",
   communityLinks: [
-    { name: "Main City", url: "https://discord.gg/thestreetsrp", avatar: discordAvatar, kind: "discord", description: "Get in the room where it starts" },
-    { name: "Tebex Store", url: "https://windycityrp.tebex.io/", avatar: tebexAvatar, kind: "store", description: "Back the city you play in" },
-    { name: "Website / Forums", url: "https://thestreetschicago.com/", avatar: forumsAvatar, kind: "forums", description: "Read the code before you move" },
+    { name: "Main City", url: "https://discord.gg/thestreetsrp", avatar: logo, kind: "discord", description: "Get in the room where it starts" },
+    { name: "Tebex Store", url: "https://windycityrp.tebex.io/", avatar: logo, kind: "store", description: "Back the city you play in" },
+    { name: "Website / Forums", url: "https://thestreetschicago.com/", avatar: logo, kind: "forums", description: "Read the code before you move" },
   ],
   factionLinks: [
-    { name: "Faction Community", url: "https://discord.gg/7apPvyuF4u", avatar: factionAvatar, description: "Find your people" },
-    { name: "Real Estate", url: "https://discord.gg/sF4eGVnfD7", avatar: cpdAvatar, description: "Build your place in the city" },
-    { name: "Family Legacies", url: "https://discord.gg/kru8k22DHd", avatar: civilianAvatar, description: "Make a name that lasts" },
-    { name: "School", url: "https://discord.gg/Cr2ffMDF5G", avatar: judiciaryAvatar, description: "Learn, connect, and find your path" },
-    { name: "Department of Justice", url: "https://discord.gg/6qu4rJCdwQ", avatar: judiciaryAvatar, description: "Courts, law, and justice" },
-    { name: "Medical Services", url: "https://discord.gg/fAA9nGgJAA", avatar: bmcAvatar, description: "Care for the city" },
-    { name: "Civilian Roleplay", url: "https://discord.gg/DdbwcrHJ9q", avatar: civilianAvatar, description: "Make a life outside the headlines" },
+    { name: "Faction Community", url: "https://discord.gg/7apPvyuF4u", avatar: factionCommunityAvatar, description: "Find your people" },
+    { name: "Real Estate", url: "https://discord.gg/sF4eGVnfD7", avatar: realEstateAvatar, description: "Build your place in the city" },
+    { name: "Family Legacies", url: "https://discord.gg/kru8k22DHd", avatar: familyLegaciesAvatar, description: "Make a name that lasts" },
+    { name: "School", url: "https://discord.gg/Cr2ffMDF5G", avatar: schoolAvatar, description: "Learn, connect, and find your path" },
+    { name: "Department of Justice", url: "https://discord.gg/6qu4rJCdwQ", avatar: departmentOfJusticeAvatar, description: "Courts, law, and justice" },
+    { name: "Medical Services", url: "https://discord.gg/fAA9nGgJAA", avatar: medicalServicesAvatar, description: "Care for the city" },
+    { name: "Civilian Roleplay", url: "https://discord.gg/DdbwcrHJ9q", avatar: civilianRoleplayAvatar, description: "Make a life outside the headlines" },
   ],
   owners: [
     {
       name: "Annoying",
       role: "Founder & Owner",
       initials: "AN",
-      photo: owner1Avatar,
       bio: "The original architect of this city. Annoying built the first block, set the standard, and keeps the bar high when the easy choice would be enough.",
       color: "from-primary/30 to-primary/5",
       socials: { discord: "", instagram: "https://www.instagram.com/mariohtxx", twitch: "https://www.twitch.tv/annoying", kick: "https://kick.com/annoying" },
@@ -59,7 +54,6 @@ export const siteConfig = {
       name: "Zarty",
       role: "Founder & Owner",
       initials: "ZA",
-      photo: owner2Avatar,
       bio: "The operational engine behind the city. Zarty keeps the systems moving, the staff sharp, and every street ready for the next story.",
       color: "from-primary/20 to-primary/5",
       socials: { discord: "https://discord.com/invite/RxfAHxYFwh", discordLabel: "", instagram: "https://www.instagram.com/blcxvi/", twitch: "https://www.twitch.tv/zartyy", kick: "https://kick.com/zarty" },
@@ -68,7 +62,6 @@ export const siteConfig = {
       name: "Capp",
       role: "Founder & Owner",
       initials: "CA",
-      photo: owner3Avatar,
       bio: "The culture behind the city. Capp drives the faction life, the community energy, and the kind of stories that follow you home.",
       color: "from-accent/30 to-accent/5",
       socials: { discord: "https://discord.com/invite/zjxAsXH", discordLabel: "302", instagram: "https://www.instagram.com/capthagod", twitch: "", kick: "" },
