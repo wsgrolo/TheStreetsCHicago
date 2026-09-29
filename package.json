@@ -6,10 +6,17 @@
     "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
     "typecheck:libs": "tsc --build",
-    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
+    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",
+    "db:generate": "drizzle-kit generate"
   },
   "private": true,
+  "dependencies": {
+    "@netlify/database": "^2.0.1",
+    "drizzle-orm": "1.0.0-beta.22"
+  },
   "devDependencies": {
+    "@netlify/functions": "^5.0.0",
+    "drizzle-kit": "1.0.0-beta.22",
     "prettier": "^3.8.3",
     "typescript": "~5.9.3"
   }
