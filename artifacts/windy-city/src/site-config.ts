@@ -9,6 +9,7 @@ import medicalServicesAvatar from "@/assets/social/factions/medical-services.png
 import civilianRoleplayAvatar from "@/assets/social/factions/civilian-roleplay.png";
 import ayedentvAvatar from "@/assets/social/owners/ayedentv.png";
 import yodadaAvatar from "@/assets/social/owners/yodada.webp";
+import grinchAvatar from "@/assets/social/owners/grinch.webp";
 
 /**
  * REPLACEMENT PANEL
@@ -49,7 +50,6 @@ export const siteConfig = {
       role: "Founder & Owner",
       initials: "AY",
       photo: ayedentvAvatar,
-      bio: "AyedenTV helps shape the city, its community, and the stories that keep people coming back.",
       color: "from-primary/30 to-primary/5",
       socials: [
         { label: "Twitch", href: "https://www.twitch.tv/ayedentv", type: "twitch" },
@@ -63,7 +63,6 @@ export const siteConfig = {
       role: "Founder & Owner",
       initials: "YO",
       photo: yodadaAvatar,
-      bio: "Yodada brings energy, creativity, and community focus to the city and its next chapter.",
       color: "from-primary/20 to-primary/5",
       socials: [
         { label: "Socials", href: "https://yodadasocials.lovable.app/", type: "external" },
@@ -74,10 +73,12 @@ export const siteConfig = {
       name: "Grinch",
       role: "Founder & Owner",
       initials: "GR",
-      photo: undefined,
-      bio: "Grinch is part of the team helping build the culture and future of The Streets Chicago.",
+      photo: grinchAvatar,
       color: "from-accent/30 to-accent/5",
-      socials: [],
+      socials: [
+        { label: "Socials", href: "https://grinchsocials.lovable.app/", type: "external" },
+        { label: "Kick", href: "https://kick.com/grinch", type: "kick" },
+      ],
     },
   ],
 } as const;
