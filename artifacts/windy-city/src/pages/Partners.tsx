@@ -5,10 +5,10 @@ import { siteConfig } from "@/site-config";
 import { Card, CardContent } from "@/components/ui/card";
 
 const navLinks = [
+  { label: "Trailer", href: "/#trailer" },
   { label: "Community", href: "/#community" },
   { label: "Factions", href: "/#factions" },
   { label: "Team", href: "/#team" },
-  { label: "Partners", href: "/partners" },
 ];
 
 const partners: { name: string; description: string; url?: string }[] = [];
@@ -25,7 +25,7 @@ export default function Partners() {
             <span className="display-type text-xl font-bold tracking-wide sm:text-2xl">{siteConfig.brand.shortName} <span className="text-primary">/ {siteConfig.brand.descriptor}</span></span>
           </a>
           <div className="hidden items-center gap-7 text-[0.68rem] font-bold uppercase tracking-[0.16em] md:flex">
-            {navLinks.map((link) => <a key={link.label} href={link.href} className={`transition-colors ${link.label === "Partners" ? "text-primary" : "text-muted-foreground hover:text-primary"}`} data-testid={`link-nav-${link.label.toLowerCase()}`}>{link.label}</a>)}
+            {navLinks.map((link) => <a key={link.label} href={link.href} className="text-muted-foreground transition-colors hover:text-primary" data-testid={`link-nav-${link.label.toLowerCase()}`}>{link.label}</a>)}
           </div>
           <div className="flex items-center gap-3">
             <a href="/" className="hidden items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary md:flex" data-testid="link-back-home"><ArrowLeft className="h-4 w-4" /> Back home</a>
@@ -34,7 +34,7 @@ export default function Partners() {
         </div>
         <motion.div initial={false} animate={menuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }} transition={{ duration: 0.22 }} className="overflow-hidden border-t border-white/10 md:hidden">
           <div className="container mx-auto flex flex-col gap-1 px-5 py-4">
-            {navLinks.map((link) => <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)} className={`rounded-sm px-4 py-3 text-sm font-bold uppercase tracking-widest transition-colors ${link.label === "Partners" ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-white/5 hover:text-primary"}`} data-testid={`link-mobile-${link.label.toLowerCase()}`}>{link.label}</a>)}
+             {navLinks.map((link) => <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)} className="rounded-sm px-4 py-3 text-sm font-bold uppercase tracking-widest text-muted-foreground transition-colors hover:bg-white/5 hover:text-primary" data-testid={`link-mobile-${link.label.toLowerCase()}`}>{link.label}</a>)}
             <a href="/" onClick={() => setMenuOpen(false)} className="mt-2 inline-flex items-center justify-center gap-2 border border-white/15 px-4 py-3 text-sm font-bold uppercase tracking-widest text-muted-foreground"><ArrowLeft className="h-4 w-4" /> Back home</a>
           </div>
         </motion.div>
