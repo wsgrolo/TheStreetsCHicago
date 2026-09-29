@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { SiDiscord, SiTwitch, SiKick } from "react-icons/si";
-import { ArrowUpRight, ChevronDown, Crown, ExternalLink, Film, MapPin, Menu, Radio, Users, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Crown, ExternalLink, Film, Menu, Users, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/site-config";
 
@@ -42,7 +42,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -89,7 +89,7 @@ export default function Home() {
       <main>
         <section className="relative flex min-h-[100dvh] items-end overflow-hidden pb-20 pt-32 md:items-center md:pb-0">
           <div className="absolute inset-0 z-0">
-            <video autoPlay muted loop playsInline className="h-full w-full object-cover opacity-65" poster={siteConfig.brand.logo}>
+            <video autoPlay muted loop playsInline preload="metadata" className="h-full w-full object-cover opacity-65" poster={siteConfig.brand.logo}>
               <source src={siteConfig.brand.heroVideo} type="video/mp4" />
             </video>
             <div className="pointer-events-none absolute inset-x-0 top-0 h-[62%] bg-[linear-gradient(180deg,rgba(255,135,20,0.62)_0%,rgba(231,83,13,0.3)_42%,transparent_100%)] mix-blend-color" />
@@ -101,7 +101,7 @@ export default function Home() {
             <div className="max-w-4xl">
               <motion.div initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="mb-7 flex items-center gap-3">
                 <span className="h-px w-10 bg-primary" />
-                <span className="section-label">Chicago / FiveM roleplay / est. now</span>
+                <span className="section-label">Chicago / FiveM roleplay</span>
               </motion.div>
               <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.12 }} className="display-type max-w-4xl text-[4.4rem] font-bold uppercase leading-[0.82] text-foreground sm:text-[6.6rem] md:text-[9.2rem]">
                 Make your<br /><span className="text-primary">name</span> here.
@@ -114,11 +114,6 @@ export default function Home() {
                   <a href="#trailer" data-testid="link-explore-city">See the trailer <ChevronDown className="ml-3 h-5 w-5" /></a>
                 </Button>
               </motion.div>
-            </div>
-            <div className="mt-16 flex max-w-2xl items-center gap-8 border-t border-white/15 pt-5 text-[0.65rem] uppercase tracking-[0.17em] text-muted-foreground md:absolute md:bottom-10 md:right-8 md:mt-0 md:border-t-0 md:pt-0">
-              <span className="flex items-center gap-2"><Radio className="h-3.5 w-3.5 text-primary" /> Live world</span>
-              <span className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 text-primary" /> Chicago, IL</span>
-              <span className="hidden sm:inline">Your story starts at street level</span>
             </div>
           </motion.div>
         </section>
@@ -146,7 +141,7 @@ export default function Home() {
               {siteConfig.communityLinks.map((link, index) => {
                 const Icon = communityIcon[link.kind];
                 return <motion.div key={link.name} initial={{ opacity: 0, x: -15 }} whileInView={{ opacity: 1, x: 0 }} whileHover={{ y: -5, scale: 1.01 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}><ExternalAnchor href={link.url} className="lift group flex h-full items-center gap-5 border border-white/10 bg-background p-5 hover:border-primary/60 hover:bg-primary/[0.04]" ariaLabel={`Open ${link.name}`}>
-                  <img src={link.avatar} alt={`${link.name} avatar`} className="h-14 w-14 rounded-full object-cover grayscale transition-all group-hover:grayscale-0" />
+                  <img src={link.avatar} alt={`${link.name} avatar`} loading="lazy" decoding="async" className="h-14 w-14 rounded-full object-cover grayscale transition-all group-hover:grayscale-0" />
                   <div className="min-w-0 flex-1"><div className="mb-1 flex items-center gap-2"><h3 className="font-bold">{link.name}</h3><Icon className="h-3.5 w-3.5 text-primary" /></div><p className="text-sm text-muted-foreground">{link.description}</p></div><ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
                 </ExternalAnchor></motion.div>;
               })}
@@ -158,7 +153,7 @@ export default function Home() {
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
              <div className="mb-14"><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl text-primary">Factions</h2></div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-               {siteConfig.factionLinks.map((link) => <motion.div key={link.name} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -5, scale: 1.01 }} viewport={{ once: true }} transition={{ duration: 0.4 }}><ExternalAnchor href={link.url} className="lift group relative flex min-h-52 flex-col justify-end overflow-hidden border border-white/10 bg-background p-6 hover:border-primary/60" ariaLabel={`Open ${link.name} community`}><img src={link.avatar} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale transition-all duration-500 group-hover:scale-105 group-hover:opacity-35 group-hover:grayscale-0" /><div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" /><div className="relative z-10"><h3 className="display-type text-3xl font-bold uppercase">{link.name}</h3><p className="mt-1 text-sm text-muted-foreground">{link.description}</p></div><ArrowUpRight className="absolute right-5 top-5 h-4 w-4 text-primary opacity-60 transition-opacity group-hover:opacity-100" /></ExternalAnchor></motion.div>)}
+               {siteConfig.factionLinks.map((link) => <motion.div key={link.name} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -5, scale: 1.01 }} viewport={{ once: true }} transition={{ duration: 0.4 }}><ExternalAnchor href={link.url} className="lift group relative flex min-h-52 flex-col justify-end overflow-hidden border border-white/10 bg-background p-6 hover:border-primary/60" ariaLabel={`Open ${link.name} community`}><img src={link.avatar} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale transition-all duration-500 group-hover:scale-105 group-hover:opacity-35 group-hover:grayscale-0" /><div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" /><div className="relative z-10"><h3 className="display-type text-3xl font-bold uppercase">{link.name}</h3><p className="mt-1 text-sm text-muted-foreground">{link.description}</p></div><ArrowUpRight className="absolute right-5 top-5 h-4 w-4 text-primary opacity-60 transition-opacity group-hover:opacity-100" /></ExternalAnchor></motion.div>)}
             </div>
           </div>
         </motion.section>
@@ -167,7 +162,7 @@ export default function Home() {
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
             <div className="mb-14"><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl text-primary">Team</h2></div>
             <div className="grid gap-6 lg:grid-cols-3">
-              {siteConfig.owners.map((owner, index) => <motion.div key={owner.name} id={`owner-${index}`} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -5, scale: 1.01 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="group flex h-full flex-col border border-white/10 bg-background p-7"><div className="mb-7 flex items-center justify-between">{owner.photo ? <img src={owner.photo} alt={`${owner.name}, ${owner.role}`} className="h-20 w-20 rounded-full border border-primary/50 object-cover grayscale transition-all group-hover:grayscale-0" /> : <div className="flex h-20 w-20 items-center justify-center rounded-full border border-primary/50 bg-primary/[0.08] display-type text-2xl font-bold text-primary" aria-label={`${owner.name}, ${owner.role}`}>{owner.initials}</div>}<Crown className="h-5 w-5 text-primary" /></div><p className="section-label mb-2">{owner.role}</p><h3 className="display-type text-4xl font-bold uppercase">{owner.name}</h3><div className="mt-auto flex min-h-24 flex-wrap content-end gap-2 border-t border-white/10 pt-5">{owner.socials.map((social) => { const SocialIcon = socialIcon[social.type]; return <ExternalAnchor key={`${owner.name}-${social.href}`} href={social.href} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} ${social.label}`}><SocialIcon className="h-3 w-3" />{social.label}</ExternalAnchor>; })}</div></motion.div>)}
+              {siteConfig.owners.map((owner, index) => <motion.div key={owner.name} id={`owner-${index}`} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -5, scale: 1.01 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="group flex h-full flex-col border border-white/10 bg-background p-7"><div className="mb-7 flex items-center justify-between">{owner.photo ? <img src={owner.photo} alt={`${owner.name}, ${owner.role}`} loading="lazy" decoding="async" className="h-20 w-20 rounded-full border border-primary/50 object-cover grayscale transition-all group-hover:grayscale-0" /> : <div className="flex h-20 w-20 items-center justify-center rounded-full border border-primary/50 bg-primary/[0.08] display-type text-2xl font-bold text-primary" aria-label={`${owner.name}, ${owner.role}`}>{owner.initials}</div>}<Crown className="h-5 w-5 text-primary" /></div><p className="section-label mb-2">{owner.role}</p><h3 className="display-type text-4xl font-bold uppercase">{owner.name}</h3><div className="mt-auto flex min-h-24 flex-wrap content-end gap-2 border-t border-white/10 pt-5">{owner.socials.map((social) => { const SocialIcon = socialIcon[social.type]; return <ExternalAnchor key={`${owner.name}-${social.href}`} href={social.href} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} ${social.label}`}><SocialIcon className="h-3 w-3" />{social.label}</ExternalAnchor>; })}</div></motion.div>)}
             </div>
           </div>
         </motion.section>
