@@ -125,7 +125,7 @@ export default function Home() {
 
         <motion.section id="trailer" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.65 }} className="py-24 md:py-36">
           <div className="container mx-auto max-w-6xl px-5 md:px-8">
-             <div className="mb-10"><div><p className="section-label mb-4">Trailer</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">See the city<br /><span className="text-primary">after dark.</span></h2></div></div>
+             <div className="mb-10"><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl text-primary">Trailer</h2></div>
             <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative aspect-video overflow-hidden border border-white/15 bg-black/30">
               {siteConfig.trailerUrl ? <iframe src={siteConfig.trailerUrl} title="The Streets Chicago official trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="absolute inset-0 h-full w-full" data-testid="video-trailer" /> : (
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-[linear-gradient(135deg,hsl(28_12%_16%),hsl(24_17%_7%))] p-6 text-center">
@@ -141,7 +141,7 @@ export default function Home() {
 
         <motion.section id="community" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.65 }} className="border-y border-white/10 bg-[hsl(28_12%_10%)] py-24 md:py-32">
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
-             <div className="mb-14 max-w-2xl"><p className="section-label mb-4">Community</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Find your<br /><span className="text-primary">entry point.</span></h2></div>
+             <div className="mb-14 max-w-2xl"><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl text-primary">Community</h2></div>
             <div className="grid gap-4 md:grid-cols-3">
               {siteConfig.communityLinks.map((link, index) => {
                 const Icon = communityIcon[link.kind];
@@ -156,7 +156,7 @@ export default function Home() {
 
         <motion.section id="factions" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.65 }} className="py-24 md:py-32">
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
-             <div className="mb-14"><div><p className="section-label mb-4">Factions</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Every block<br /><span className="text-primary">has a code.</span></h2></div></div>
+             <div className="mb-14"><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl text-primary">Factions</h2></div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                {siteConfig.factionLinks.map((link) => <motion.div key={link.name} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -5, scale: 1.01 }} viewport={{ once: true }} transition={{ duration: 0.4 }}><ExternalAnchor href={link.url} className="lift group relative flex min-h-52 flex-col justify-end overflow-hidden border border-white/10 bg-background p-6 hover:border-primary/60" ariaLabel={`Open ${link.name} community`}><img src={link.avatar} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale transition-all duration-500 group-hover:scale-105 group-hover:opacity-35 group-hover:grayscale-0" /><div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" /><div className="relative z-10"><h3 className="display-type text-3xl font-bold uppercase">{link.name}</h3><p className="mt-1 text-sm text-muted-foreground">{link.description}</p></div><ArrowUpRight className="absolute right-5 top-5 h-4 w-4 text-primary opacity-60 transition-opacity group-hover:opacity-100" /></ExternalAnchor></motion.div>)}
             </div>
@@ -165,7 +165,7 @@ export default function Home() {
 
         <motion.section id="team" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.65 }} className="border-t border-white/10 bg-black/20 py-24 md:py-32">
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
-            <div className="mb-14"><p className="section-label mb-4">Team</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Built by<br /><span className="text-primary">people who care.</span></h2></div>
+            <div className="mb-14"><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl text-primary">Team</h2></div>
             <div className="grid gap-6 lg:grid-cols-3">
               {siteConfig.owners.map((owner, index) => <motion.div key={owner.name} id={`owner-${index}`} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -5, scale: 1.01 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="group flex h-full flex-col border border-white/10 bg-background p-7"><div className="mb-7 flex items-center justify-between">{owner.photo ? <img src={owner.photo} alt={`${owner.name}, ${owner.role}`} className="h-20 w-20 rounded-full border border-primary/50 object-cover grayscale transition-all group-hover:grayscale-0" /> : <div className="flex h-20 w-20 items-center justify-center rounded-full border border-primary/50 bg-primary/[0.08] display-type text-2xl font-bold text-primary" aria-label={`${owner.name}, ${owner.role}`}>{owner.initials}</div>}<Crown className="h-5 w-5 text-primary" /></div><p className="section-label mb-2">{owner.role}</p><h3 className="display-type text-4xl font-bold uppercase">{owner.name}</h3><div className="mt-auto flex min-h-24 flex-wrap content-end gap-2 border-t border-white/10 pt-5">{owner.socials.map((social) => { const SocialIcon = socialIcon[social.type]; return <ExternalAnchor key={`${owner.name}-${social.href}`} href={social.href} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} ${social.label}`}><SocialIcon className="h-3 w-3" />{social.label}</ExternalAnchor>; })}</div></motion.div>)}
             </div>
