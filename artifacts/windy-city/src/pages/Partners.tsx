@@ -5,8 +5,6 @@ import { siteConfig } from "@/site-config";
 import { Card, CardContent } from "@/components/ui/card";
 
 const navLinks = [
-  { label: "About", href: "/#about" },
-  { label: "Features", href: "/#features" },
   { label: "Community", href: "/#community" },
   { label: "Factions", href: "/#factions" },
   { label: "Team", href: "/#team" },

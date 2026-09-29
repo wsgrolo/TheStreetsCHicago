@@ -7,6 +7,8 @@ import schoolAvatar from "@/assets/social/factions/school.png";
 import departmentOfJusticeAvatar from "@/assets/social/factions/department-of-justice.png";
 import medicalServicesAvatar from "@/assets/social/factions/medical-services.png";
 import civilianRoleplayAvatar from "@/assets/social/factions/civilian-roleplay.png";
+import ayedentvAvatar from "@/assets/social/owners/ayedentv.png";
+import yodadaAvatar from "@/assets/social/owners/yodada.webp";
 
 /**
  * REPLACEMENT PANEL
@@ -23,13 +25,13 @@ export const siteConfig = {
   },
   links: {
     discord: "https://discord.gg/thestreetsrp",
-    store: "https://windycityrp.tebex.io/",
+    store: "https://thestreetsrp.tebex.io/",
     guidelines: "https://thestreetschicago.com/",
   },
   trailerUrl: "https://www.youtube.com/embed/XwZGzwCXJbU?rel=0&modestbranding=1",
   communityLinks: [
     { name: "Main City", url: "https://discord.gg/thestreetsrp", avatar: logo, kind: "discord", description: "Get in the room where it starts" },
-    { name: "Tebex Store", url: "https://windycityrp.tebex.io/", avatar: logo, kind: "store", description: "Back the city you play in" },
+    { name: "Tebex Store", url: "https://thestreetsrp.tebex.io/", avatar: logo, kind: "store", description: "Back the city you play in" },
     { name: "Website / Forums", url: "https://thestreetschicago.com/", avatar: logo, kind: "forums", description: "Read the code before you move" },
   ],
   factionLinks: [
@@ -43,28 +45,39 @@ export const siteConfig = {
   ],
   owners: [
     {
-      name: "Annoying",
+      name: "AyedenTV",
       role: "Founder & Owner",
-      initials: "AN",
-      bio: "The original architect of this city. Annoying built the first block, set the standard, and keeps the bar high when the easy choice would be enough.",
+      initials: "AY",
+      photo: ayedentvAvatar,
+      bio: "AyedenTV helps shape the city, its community, and the stories that keep people coming back.",
       color: "from-primary/30 to-primary/5",
-      socials: { discord: "", instagram: "https://www.instagram.com/mariohtxx", twitch: "https://www.twitch.tv/annoying", kick: "https://kick.com/annoying" },
+      socials: [
+        { label: "Twitch", href: "https://www.twitch.tv/ayedentv", type: "twitch" },
+        { label: "Main Discord", href: "https://discord.gg/thestreetsrp", type: "discord" },
+        { label: "Jungles RP", href: "https://discord.gg/junglesrp", type: "discord" },
+        { label: "Discord", href: "https://discord.gg/wGZxEJUwdp", type: "discord" },
+      ],
     },
     {
-      name: "Zarty",
+      name: "Yodada",
       role: "Founder & Owner",
-      initials: "ZA",
-      bio: "The operational engine behind the city. Zarty keeps the systems moving, the staff sharp, and every street ready for the next story.",
+      initials: "YO",
+      photo: yodadaAvatar,
+      bio: "Yodada brings energy, creativity, and community focus to the city and its next chapter.",
       color: "from-primary/20 to-primary/5",
-      socials: { discord: "https://discord.com/invite/RxfAHxYFwh", discordLabel: "", instagram: "https://www.instagram.com/blcxvi/", twitch: "https://www.twitch.tv/zartyy", kick: "https://kick.com/zarty" },
+      socials: [
+        { label: "Socials", href: "https://yodadasocials.lovable.app/", type: "external" },
+        { label: "Kick", href: "https://kick.com/yodadalive", type: "kick" },
+      ],
     },
     {
-      name: "Capp",
+      name: "Grinch",
       role: "Founder & Owner",
-      initials: "CA",
-      bio: "The culture behind the city. Capp drives the faction life, the community energy, and the kind of stories that follow you home.",
+      initials: "GR",
+      photo: undefined,
+      bio: "Grinch is part of the team helping build the culture and future of The Streets Chicago.",
       color: "from-accent/30 to-accent/5",
-      socials: { discord: "https://discord.com/invite/zjxAsXH", discordLabel: "302", instagram: "https://www.instagram.com/capthagod", twitch: "", kick: "" },
+      socials: [],
     },
   ],
 } as const;

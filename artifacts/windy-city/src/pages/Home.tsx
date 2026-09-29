@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { SiDiscord, SiInstagram, SiTwitch, SiKick } from "react-icons/si";
-import { ArrowUpRight, ChevronDown, Crown, ExternalLink, Film, MapPin, Menu, Radio, Server, Shield, Users, X } from "lucide-react";
+import { SiDiscord, SiTwitch, SiKick } from "react-icons/si";
+import { ArrowUpRight, ChevronDown, Crown, ExternalLink, Film, MapPin, Menu, Radio, Users, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/site-config";
 
@@ -11,16 +11,14 @@ const communityIcon = {
   forums: Users,
 } as const;
 
-const features = [
-  { icon: Shield, title: "Roleplay with weight", description: "Rules protect the story, not the spectacle. Come ready to make choices that carry." },
-  { icon: MapPin, title: "A city with a pulse", description: "From the blocks to the lakefront, every neighborhood has its own rhythm, pressure, and opportunity." },
-  { icon: Users, title: "People, not player counts", description: "Build a name with crews, departments, businesses, and the strangers you meet after dark." },
-  { icon: Server, title: "Made for the long run", description: "A tuned FiveM framework, active staff, and a city designed to keep your story moving." },
-];
+const socialIcon = {
+  discord: SiDiscord,
+  twitch: SiTwitch,
+  kick: SiKick,
+  external: ExternalLink,
+} as const;
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Features", href: "#features" },
   { label: "Community", href: "#community" },
   { label: "Factions", href: "#factions" },
   { label: "Team", href: "#team" },
@@ -113,7 +111,7 @@ export default function Home() {
                   <ExternalAnchor href={siteConfig.links.discord} ariaLabel="Join The Streets Chicago Discord">Join the Discord <SiDiscord className="ml-3 h-5 w-5" /></ExternalAnchor>
                 </Button>
                 <Button size="lg" variant="outline" asChild className="h-14 rounded-sm border-white/20 bg-black/20 px-8 text-sm font-bold uppercase tracking-widest text-foreground backdrop-blur-sm hover:border-primary hover:bg-primary/10 hover:text-primary">
-                  <a href="#about" data-testid="link-explore-city">Explore the city <ChevronDown className="ml-3 h-5 w-5" /></a>
+                  <a href="#trailer" data-testid="link-explore-city">See the trailer <ChevronDown className="ml-3 h-5 w-5" /></a>
                 </Button>
               </motion.div>
             </div>
@@ -123,41 +121,6 @@ export default function Home() {
               <span className="hidden sm:inline">Your story starts at street level</span>
             </div>
           </motion.div>
-        </section>
-
-        <section id="about" className="relative py-24 md:py-36">
-          <div className="container mx-auto grid max-w-7xl gap-14 px-5 md:grid-cols-[0.7fr_1.3fr] md:px-8">
-            <div>
-               <p className="section-label mb-5">About the city</p>
-              <div className="mark-rule mb-7 w-32" />
-              <p className="display-type text-5xl font-semibold uppercase leading-[0.9] text-foreground/90 md:text-7xl">No scripts.<br /><span className="text-primary">Just stakes.</span></p>
-            </div>
-            <div className="max-w-2xl">
-              <h2 className="display-type text-4xl font-bold uppercase leading-none md:text-6xl">A city built for <span className="text-primary">story</span>.</h2>
-              <div className="mt-10 grid grid-cols-2 gap-6 border-t border-white/10 pt-7 text-xs uppercase tracking-widest text-muted-foreground">
-                <div><span className="display-type block text-4xl font-bold text-primary">24/7</span><span>Stories in motion</span></div>
-                <div><span className="display-type block text-4xl font-bold text-primary">1</span><span>City to make yours</span></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="features" className="border-y border-white/10 bg-black/20 py-24 md:py-32">
-          <div className="container mx-auto max-w-7xl px-5 md:px-8">
-            <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-               <div><p className="section-label mb-4">The framework</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Built for the<br /><span className="text-primary">long game.</span></h2></div>
-            </div>
-            <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2">
-              {features.map((feature) => (
-                 <motion.div key={feature.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }} className="lift group bg-background p-7 md:p-10">
-                   <div className="mb-12 flex items-start justify-between"><feature.icon className="h-8 w-8 text-primary" /></div>
-                  <h3 className="display-type text-3xl font-bold uppercase">{feature.title}</h3>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
-                  <div className="mt-8 h-0.5 w-12 bg-primary transition-all duration-300 group-hover:w-24" />
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </section>
 
         <section id="trailer" className="py-24 md:py-36">
@@ -204,7 +167,7 @@ export default function Home() {
           <div className="container mx-auto max-w-7xl px-5 md:px-8">
             <div className="mb-14"><p className="section-label mb-4">The people behind it</p><h2 className="display-type text-5xl font-bold uppercase leading-none md:text-7xl">Built by<br /><span className="text-primary">people who care.</span></h2></div>
             <div className="grid gap-6 lg:grid-cols-3">
-              {siteConfig.owners.map((owner, index) => <motion.div key={owner.name} id={`owner-${index}`} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="group border border-white/10 bg-background p-7"><div className="mb-7 flex items-center justify-between"><div className="flex h-20 w-20 items-center justify-center rounded-full border border-primary/50 bg-primary/[0.08] display-type text-2xl font-bold text-primary" aria-label={`${owner.name}, ${owner.role}`}>{owner.initials}</div><Crown className="h-5 w-5 text-primary" /></div><p className="section-label mb-2">{owner.role}</p><h3 className="display-type text-4xl font-bold uppercase">{owner.name}</h3><p className="mt-4 min-h-20 text-sm leading-relaxed text-muted-foreground">{owner.bio}</p><div className="mt-7 flex flex-wrap gap-2 border-t border-white/10 pt-5">{owner.socials.discord && <ExternalAnchor href={owner.socials.discord} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Discord`}><SiDiscord className="h-3 w-3" />{owner.socials.discordLabel || "Discord"}</ExternalAnchor>}{owner.socials.instagram && <ExternalAnchor href={owner.socials.instagram} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Instagram`}><SiInstagram className="h-3 w-3" />Instagram</ExternalAnchor>}{owner.socials.twitch && <ExternalAnchor href={owner.socials.twitch} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Twitch`}><SiTwitch className="h-3 w-3" />Twitch</ExternalAnchor>}{owner.socials.kick && <ExternalAnchor href={owner.socials.kick} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} Kick`}><SiKick className="h-3 w-3" />Kick</ExternalAnchor>}</div></motion.div>)}
+              {siteConfig.owners.map((owner, index) => <motion.div key={owner.name} id={`owner-${index}`} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="group border border-white/10 bg-background p-7"><div className="mb-7 flex items-center justify-between">{owner.photo ? <img src={owner.photo} alt={`${owner.name}, ${owner.role}`} className="h-20 w-20 rounded-full border border-primary/50 object-cover grayscale transition-all group-hover:grayscale-0" /> : <div className="flex h-20 w-20 items-center justify-center rounded-full border border-primary/50 bg-primary/[0.08] display-type text-2xl font-bold text-primary" aria-label={`${owner.name}, ${owner.role}`}>{owner.initials}</div>}<Crown className="h-5 w-5 text-primary" /></div><p className="section-label mb-2">{owner.role}</p><h3 className="display-type text-4xl font-bold uppercase">{owner.name}</h3><p className="mt-4 min-h-20 text-sm leading-relaxed text-muted-foreground">{owner.bio}</p><div className="mt-7 flex flex-wrap gap-2 border-t border-white/10 pt-5">{owner.socials.map((social) => { const SocialIcon = socialIcon[social.type]; return <ExternalAnchor key={`${owner.name}-${social.href}`} href={social.href} className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary" ariaLabel={`${owner.name} ${social.label}`}><SocialIcon className="h-3 w-3" />{social.label}</ExternalAnchor>; })}</div></motion.div>)}
             </div>
           </div>
         </section>
