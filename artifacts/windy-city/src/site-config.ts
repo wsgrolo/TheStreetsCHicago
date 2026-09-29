@@ -29,7 +29,7 @@ export const siteConfig = {
     store: "https://thestreetsrp.tebex.io/",
     guidelines: "https://thestreetschicago.com/",
   },
-  trailerUrl: "https://www.youtube.com/embed/XwZGzwCXJbU?rel=0&modestbranding=1",
+  trailerUrl: "https://www.youtube.com/embed/XwZGzwCXJbU?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1",
   communityLinks: [
     { name: "Main City", url: "https://discord.gg/thestreetsrp", avatar: logo, kind: "discord", description: "Get in the room where it starts" },
     { name: "Tebex Store", url: "https://thestreetsrp.tebex.io/", avatar: logo, kind: "store", description: "Back the city you play in" },
