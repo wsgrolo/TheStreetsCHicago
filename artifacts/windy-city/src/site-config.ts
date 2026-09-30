@@ -9,6 +9,9 @@ import medicalServicesAvatar from "@/assets/social/factions/medical-services.png
 import civilianRoleplayAvatar from "@/assets/social/factions/civilian-roleplay.png";
 import ayedentvAvatar from "@/assets/social/owners/ayedentv.png";
 import yodadaAvatar from "@/assets/social/owners/yodada.webp";
+import discordAvatar from "@/assets/social/discord.png";
+import tebexAvatar from "@/assets/social/tebex.png";
+import forumsAvatar from "@/assets/social/forums.png";
 import grinchAvatar from "@/assets/social/owners/grinch.webp";
 
 /**
@@ -31,9 +34,9 @@ export const siteConfig = {
   },
   trailerUrl: "https://www.youtube.com/embed/XwZGzwCXJbU?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1",
   communityLinks: [
-    { name: "Main City", url: "https://discord.gg/thestreetsrp", avatar: logo, kind: "discord", description: "Get in the room where it starts" },
-    { name: "Tebex Store", url: "https://thestreetsrp.tebex.io/", avatar: logo, kind: "store", description: "Back the city you play in" },
-    { name: "Website / Forums", url: "https://thestreetschicago.com/", avatar: logo, kind: "forums", description: "Read the code before you move" },
+    { name: "Main City", url: "https://discord.gg/thestreetsrp", avatar: discordAvatar, kind: "discord", description: "Get in the room where it starts" },
+    { name: "Tebex Store", url: "https://thestreetsrp.tebex.io/", avatar: tebexAvatar, kind: "store", description: "Back the city you play in" },
+    { name: "Website / Forums", url: "https://thestreetschicago.com/", avatar: forumsAvatar, kind: "forums", description: "Read the code before you move" },
   ],
   factionLinks: [
     { name: "The Streets : Factions", url: "https://discord.gg/7apPvyuF4u", avatar: factionCommunityAvatar, description: "Find your people" },
