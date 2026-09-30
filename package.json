@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "dev": "npx pnpm --filter @workspace/windy-city run dev",
     "build": "npx pnpm run typecheck && npx pnpm -r --if-present run build",
     "typecheck:libs": "tsc --build",
     "typecheck": "npx pnpm run typecheck:libs && npx pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",
