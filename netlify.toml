@@ -1,16 +1,14 @@
 [build]
-  command = "pnpm --filter @workspace/windy-city run build"
+  command = "npx pnpm --filter @workspace/windy-city run build"
   publish = "artifacts/windy-city/dist/public"
 
 [build.environment]
   NODE_VERSION = "24"
-  # Required by the Vite configs in artifacts/*; the site is served from the root.
   BASE_PATH = "/"
 
 [functions]
   directory = "netlify/functions"
 
-# Client-side routing (wouter): serve index.html for any path without a file.
 [[redirects]]
   from = "/*"
   to = "/index.html"
