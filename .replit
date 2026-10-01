@@ -1,0 +1,8 @@
+run = "pnpm install && pnpm dev"
+modules = ["nodejs-20"]
+
+[unitTest]
+language = "nodejs"
+
+[nix]
+channel = "stable-24_05"
