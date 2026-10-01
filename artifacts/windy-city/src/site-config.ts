@@ -53,6 +53,10 @@ export const siteConfig = {
         { label: "Jungles RP", href: "https://discord.gg/junglesrp", type: "discord" },
         { label: "Discord", href: "https://discord.gg/wGZxEJUwdp", type: "discord" },
       ],
+      links: [
+        { label: "YouTube", href: "https://www.youtube.com/@AyedenTV", type: "external" },
+        { label: "Twitter / X", href: "https://x.com/AyedenTV", type: "external" },
+      ],
     },
     {
       name: "Yodada",
@@ -64,6 +68,9 @@ export const siteConfig = {
         { label: "Socials", href: "https://yodadasocials.lovable.app/", type: "external" },
         { label: "Kick", href: "https://kick.com/yodadalive", type: "kick" },
       ],
+      links: [
+        { label: "YouTube", href: "https://www.youtube.com/@Yodada", type: "external" },
+      ],
     },
     {
       name: "Grinch",
@@ -74,6 +81,9 @@ export const siteConfig = {
       socials: [
         { label: "Socials", href: "https://grinchsocials.lovable.app/", type: "external" },
         { label: "Kick", href: "https://kick.com/grinch", type: "kick" },
+      ],
+      links: [
+        { label: "YouTube", href: "https://www.youtube.com/@Grinch", type: "external" },
       ],
     },
   ],
